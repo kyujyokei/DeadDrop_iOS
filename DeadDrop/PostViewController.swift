@@ -14,7 +14,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     let manager = CLLocationManager() // This is for getting user's current location
     
     //var currentLocation:CLLocation?
-    var newDrop = Drop.init()
+    var newDrop = Drop.init(lat: 0.0, long: 0.0, message: "")
     var latitude:CLLocationDegrees?
     var longitude:CLLocationDegrees?
     
@@ -81,7 +81,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         self.postTextView.delegate = self //why??
         wordCountLabel.text = String(wordCount)
         
-        manager.delegate = self as! CLLocationManagerDelegate
+        manager.delegate = self as CLLocationManagerDelegate
         manager.desiredAccuracy = kCLLocationAccuracyBest // get the most accurate data
         manager.requestWhenInUseAuthorization() // request the location when user is using our app, not in backgroud
         manager.startUpdatingLocation()
@@ -97,12 +97,9 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     
     func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toTable"{
-        let Destination : MainTableViewController = segue.destination as! MainTableViewController
-            var newDrop = Drop.init()
-            newDrop.latitude = latitude!
-            newDrop.longtitude = longitude!
-            newDrop.message = postTextView.text
-        Destination.dropArray.append(newDrop)
+            let Destination : MainTableViewController = segue.destination as! MainTableViewController
+            let newDrop = Drop.init(lat: latitude!, long: longitude!, message: postTextView.text)
+            Destination.dropArray.append(newDrop)
         }
     }
     

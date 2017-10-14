@@ -72,7 +72,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     
     func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let Destination : PostViewController = segue.destination as! PostViewController
+        //let Destination : PostViewController = segue.destination as! PostViewController
 
         //Destination.recentItemId = itemIdArray[selectedNumber]
     }
