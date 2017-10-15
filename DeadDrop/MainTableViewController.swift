@@ -11,7 +11,7 @@ import MapKit
 
 class MainTableViewController: UITableViewController {
     
-    var dropArray:[Drop] = [Drop]()
+    //var dropArray:[Drop] = [Drop]()
     
     func addTapped(){
         performSegue(withIdentifier: "tableToPost", sender: self)
@@ -27,7 +27,7 @@ class MainTableViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("dropArray.count:\(dropArray.count)\n")
+        print("dropArray.count:\(DropManager.drops.count)\n")
         self.tableView.reloadData()
         
     }
@@ -46,7 +46,7 @@ class MainTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return dropArray.count
+        return DropManager.drops.count
     }
 
     
@@ -54,7 +54,9 @@ class MainTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        cell.textLabel?.text = "lat:\(dropArray[indexPath.row].latitude),long:\(dropArray[indexPath.row].longtitude),message:\(String(describing: dropArray[indexPath.row].message!))"
+        let i = DropManager.drops[indexPath.row]
+        
+        cell.textLabel?.text = "lat:\(i.latitude),long:\(i.longtitude),message:\(String(describing: i.message!))"
         
         return cell
     }
@@ -62,7 +64,7 @@ class MainTableViewController: UITableViewController {
     @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? PostViewController {
 //            dataRecieved = sourceViewController.dataPassed
-            dropArray.append(sourceViewController.newDrop)
+            DropManager.add(drop: sourceViewController.newDrop)
         }
     }
 

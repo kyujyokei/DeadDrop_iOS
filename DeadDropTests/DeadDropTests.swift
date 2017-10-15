@@ -60,7 +60,12 @@ class DeadDropTests: XCTestCase {
         XCTAssertEqual(lastDrop.latitude, 1.11)
         XCTAssertEqual(lastDrop.longtitude, 2.22)
         XCTAssertEqual(lastDrop.message, "Test")
+    }
+    
+    func testDeleteDrop(){
+        DropManager.delete(index: DropManager.drops.count-1)
         
+        XCTAssertEqual(DropManager.drops.count, 2)
     }
     
     

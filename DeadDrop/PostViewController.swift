@@ -95,13 +95,13 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         // Dispose of any resources that can be recreated.
     }
     
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toTable"{
-            let Destination : MainTableViewController = segue.destination as! MainTableViewController
-            let newDrop = Drop.init(lat: latitude!, long: longitude!, message: postTextView.text)
-            Destination.dropArray.append(newDrop)
-        }
-    }
+//    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "toTable"{
+//            let Destination : MainTableViewController = segue.destination as! MainTableViewController
+//            let newDrop = Drop.init(lat: latitude!, long: longitude!, message: postTextView.text)
+//            DropManager.add(drop: newDrop)
+//        }
+//    }
     
 
     /*
