@@ -55,7 +55,7 @@ func getDataFromDB( latitude:Float , longitude:Float , range:Float ) {
                 
                 
                 
-                let itemDictionary = parsedResult![Constants.MessageResponseKeys.messages] as? [[String:AnyObject]]
+//                let itemDictionary = parsedResult![Constants.MessageResponseKeys.messages] as? [[String:AnyObject]]
                 //print(itemDictionary)
                 
 //                

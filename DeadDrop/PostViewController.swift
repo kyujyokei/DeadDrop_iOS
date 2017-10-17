@@ -27,12 +27,34 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     
     @IBAction func postButtonAction(_ sender: UIButton) {
         
-        newDrop.latitude = latitude!
-        newDrop.longtitude = longitude!
-        newDrop.message = postTextView.text
-        
-        //performSegue(withIdentifier: "toTable", sender: self)
-        
+//        newDrop.latitude = latitude!
+//        newDrop.longtitude = longitude!
+//        newDrop.message = postTextView.text
+        guard let url = URL(string:"localhost:3000/api/message") else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        print("POSTED")
+
+        let newMessage = Message(UUID: "123", message: "Hi", timestamp: "time", latitude: 2.2, longitude: 2.2)
+        let newPost = Data(message: newMessage)
+        // TODO: fix this
+        // Do we have to generate the UUID?
+
+        do {
+            let jsonBody = try JSONEncoder().encode(newPost)
+            request.httpBody = jsonBody
+        } catch {}
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request){ (data,response,err) in
+            guard let data = data else {return}
+            do{
+                let sendPost = try JSONDecoder().decode(Data.self, from: data)
+                print("sendPost:\(sendPost)")
+            }catch{}
+        }
+        task.resume()
     }
     
     // Get the current location of user
@@ -71,7 +93,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
             self.wordCountLabel.text = "0"
             self.wordCountLabel.textColor = UIColor.red
         }
-        print("\(postTextView.text.characters.count)  \(text.characters.count)")
+        //print("\(postTextView.text.characters.count)  \(text.characters.count)")
         
         return newLength <= wordCount // will stop input after reaching this limit
     }

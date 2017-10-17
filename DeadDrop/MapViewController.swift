@@ -62,7 +62,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     
     override func viewDidAppear(_ animated: Bool) {
-        print(message)
+        //print(message)
     }
 
     override func didReceiveMemoryWarning() {
