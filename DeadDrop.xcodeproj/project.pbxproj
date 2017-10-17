@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C949CF841F92D1C900EA48DC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949CF831F92D1C900EA48DC /* Constants.swift */; };
-		C949CF861F92D30900EA48DC /* escapeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949CF851F92D30900EA48DC /* escapeParameters.swift */; };
+		C949CF861F92D30900EA48DC /* EscapeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949CF851F92D30900EA48DC /* EscapeParameters.swift */; };
 		C949CF881F92D4E300EA48DC /* GetDataFromDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949CF871F92D4E300EA48DC /* GetDataFromDB.swift */; };
 		C949CF8A1F92E02100EA48DC /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949CF891F92E02100EA48DC /* GCDBlackBox.swift */; };
 		C97BBD751F81071A0060F518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BBD741F81071A0060F518 /* AppDelegate.swift */; };
@@ -19,7 +19,7 @@
 		C97BBD8A1F81071A0060F518 /* DeadDropTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BBD891F81071A0060F518 /* DeadDropTests.swift */; };
 		C97BBD951F81071A0060F518 /* DeadDropUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BBD941F81071A0060F518 /* DeadDropUITests.swift */; };
 		C98C93981F82FE5700AA5609 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98C93971F82FE5700AA5609 /* PostViewController.swift */; };
-		C98C939A1F83030000AA5609 /* classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98C93991F83030000AA5609 /* classes.swift */; };
+		C98C939A1F83030000AA5609 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98C93991F83030000AA5609 /* Classes.swift */; };
 		C9BAAF7A1F8D898D0076F81F /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BAAF791F8D898D0076F81F /* MainTableViewController.swift */; };
 		C9DF703F1F8AF57B0052837A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DF703E1F8AF57B0052837A /* CoreLocation.framework */; };
 		C9EF802F1F8D904200162F6E /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF802E1F8D904200162F6E /* MainTableViewController.swift */; };
@@ -44,7 +44,7 @@
 
 /* Begin PBXFileReference section */
 		C949CF831F92D1C900EA48DC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		C949CF851F92D30900EA48DC /* escapeParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = escapeParameters.swift; sourceTree = "<group>"; };
+		C949CF851F92D30900EA48DC /* EscapeParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscapeParameters.swift; sourceTree = "<group>"; };
 		C949CF871F92D4E300EA48DC /* GetDataFromDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDataFromDB.swift; sourceTree = "<group>"; };
 		C949CF891F92E02100EA48DC /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		C97BBD711F81071A0060F518 /* DeadDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeadDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,7 +61,7 @@
 		C97BBD941F81071A0060F518 /* DeadDropUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadDropUITests.swift; sourceTree = "<group>"; };
 		C97BBD961F81071A0060F518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C98C93971F82FE5700AA5609 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
-		C98C93991F83030000AA5609 /* classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = classes.swift; sourceTree = "<group>"; };
+		C98C93991F83030000AA5609 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
 		C9BAAF791F8D898D0076F81F /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		C9DF703E1F8AF57B0052837A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C9EF802E1F8D904200162F6E /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -125,9 +125,9 @@
 				C97BBD7B1F81071A0060F518 /* Assets.xcassets */,
 				C97BBD7D1F81071A0060F518 /* LaunchScreen.storyboard */,
 				C97BBD801F81071A0060F518 /* Info.plist */,
-				C98C93991F83030000AA5609 /* classes.swift */,
+				C98C93991F83030000AA5609 /* Classes.swift */,
 				C949CF831F92D1C900EA48DC /* Constants.swift */,
-				C949CF851F92D30900EA48DC /* escapeParameters.swift */,
+				C949CF851F92D30900EA48DC /* EscapeParameters.swift */,
 				C949CF871F92D4E300EA48DC /* GetDataFromDB.swift */,
 				C949CF891F92E02100EA48DC /* GCDBlackBox.swift */,
 			);
@@ -296,11 +296,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C949CF861F92D30900EA48DC /* escapeParameters.swift in Sources */,
+				C949CF861F92D30900EA48DC /* EscapeParameters.swift in Sources */,
 				C98C93981F82FE5700AA5609 /* PostViewController.swift in Sources */,
 				C949CF881F92D4E300EA48DC /* GetDataFromDB.swift in Sources */,
 				C97BBD771F81071A0060F518 /* MapViewController.swift in Sources */,
-				C98C939A1F83030000AA5609 /* classes.swift in Sources */,
+				C98C939A1F83030000AA5609 /* Classes.swift in Sources */,
 				C9BAAF7A1F8D898D0076F81F /* MainTableViewController.swift in Sources */,
 				C97BBD751F81071A0060F518 /* AppDelegate.swift in Sources */,
 				C949CF8A1F92E02100EA48DC /* GCDBlackBox.swift in Sources */,

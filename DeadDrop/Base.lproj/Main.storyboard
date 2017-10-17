@@ -140,7 +140,7 @@
         <!--Main Table View Controller-->
         <scene sceneID="PJe-dV-cYi">
             <objects>
-                <tableViewController id="9cu-Fu-hMs" customClass="MainTableViewController" customModule="DeadDrop" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="InitialViewController" id="9cu-Fu-hMs" customClass="MainTableViewController" customModule="DeadDrop" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="G7n-Ab-1KW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

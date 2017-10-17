@@ -70,14 +70,7 @@ func getDataFromDB( latitude:Float , longitude:Float , range:Float ) {
                     let newDrop = Drop.init(lat: Double(Constants.MessageResponseKeys.latitude)!, long: Double(Constants.MessageResponseKeys.longitude)!, message: Constants.MessageResponseKeys.message)
                 
                     DropManager.add(drop: newDrop)
-//
-//                    
-//                    priceArray.append(itemPrice!)
-//                    titleArray.append(itemTitle!)
-//                    itemIdArray.append(itemId!)
-//                    imageArray.append(itemImage!)
-                
-//                }
+
 
                 
                 performUIUpdatesOnMain(){

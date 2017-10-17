@@ -20,7 +20,7 @@ class MainTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DropManager.init()
+        //DropManager.init()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         
@@ -57,6 +57,8 @@ class MainTableViewController: UITableViewController {
         let i = DropManager.drops[indexPath.row]
         
         cell.textLabel?.text = "lat:\(i.latitude),long:\(i.longtitude),message:\(String(describing: i.message!))"
+        
+        print(String((cell.textLabel?.text!)!)!)
         
         return cell
     }
