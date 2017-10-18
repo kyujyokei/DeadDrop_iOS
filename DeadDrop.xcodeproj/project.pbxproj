@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C909C5C91F95BFB8005A758D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909C5C81F95BFB8005A758D /* Post.swift */; };
+		C945FC8E1F96D77400D7CF3E /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = C945FC8D1F96D77300D7CF3E /* test.json */; };
 		C949CF841F92D1C900EA48DC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949CF831F92D1C900EA48DC /* Constants.swift */; };
 		C949CF861F92D30900EA48DC /* EscapeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949CF851F92D30900EA48DC /* EscapeParameters.swift */; };
 		C949CF881F92D4E300EA48DC /* GetDataFromDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949CF871F92D4E300EA48DC /* GetDataFromDB.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		C909C5C81F95BFB8005A758D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		C945FC8D1F96D77300D7CF3E /* test.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		C949CF831F92D1C900EA48DC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C949CF851F92D30900EA48DC /* EscapeParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscapeParameters.swift; sourceTree = "<group>"; };
 		C949CF871F92D4E300EA48DC /* GetDataFromDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDataFromDB.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				C949CF871F92D4E300EA48DC /* GetDataFromDB.swift */,
 				C949CF891F92E02100EA48DC /* GCDBlackBox.swift */,
 				C909C5C81F95BFB8005A758D /* Post.swift */,
+				C945FC8D1F96D77300D7CF3E /* test.json */,
 			);
 			path = DeadDrop;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C97BBD7F1F81071A0060F518 /* LaunchScreen.storyboard in Resources */,
+				C945FC8E1F96D77400D7CF3E /* test.json in Resources */,
 				C97BBD7C1F81071A0060F518 /* Assets.xcassets in Resources */,
 				C97BBD7A1F81071A0060F518 /* Main.storyboard in Resources */,
 			);

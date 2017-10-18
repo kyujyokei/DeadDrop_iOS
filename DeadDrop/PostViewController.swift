@@ -30,30 +30,35 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
 //        newDrop.latitude = latitude!
 //        newDrop.longtitude = longitude!
 //        newDrop.message = postTextView.text
-        guard let url = URL(string:"localhost:3000/api/message") else {return}
+        guard let url = URL(string:"http://localhost:443/api/message") else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         print("POSTED")
 
-        let newMessage = Message(UUID: 1, message: "Hi", timestamp: "time", latitude: "2.2", longitude: "2.2")
+        let newMessage = Message(uuid: 1, message: "Hi", timestamp: "time", latitude: "2.2", longitude: "2.2")
         let newData = Data(messages: [newMessage])
         let newPost = Package(data: newData)
+//        print("newPost:",newPost)
         // TODO: fix this
-        // Do we have to generate the UUID?
 
         do {
             let jsonBody = try JSONEncoder().encode(newPost)
             request.httpBody = jsonBody
-        } catch {}
+            print("jsonBody:",jsonBody)
+        } catch let err  {
+            print("jsonBody Error: ",err)
+        }
 
         let session = URLSession.shared
         let task = session.dataTask(with: request){ (data,response,err) in
             guard let data = data else {return}
             do{
-                let sendPost = try JSONDecoder().decode(Data.self, from: data)
+                let sendPost = try JSONDecoder().decode(Package.self, from: data)
                 print("sendPost:\(sendPost)")
-            }catch{}
+            }catch let err{
+                print("Session Error: ",err)
+            }
         }
         task.resume()
     }

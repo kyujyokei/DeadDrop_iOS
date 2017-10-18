@@ -14,8 +14,8 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
     //var dropArray:[Drop] = [Drop]()
     
     let manager = CLLocationManager() // This is for getting user's current location
-    var latitude:CLLocationDegrees?
-    var longitude:CLLocationDegrees?
+    var latitude:CLLocationDegrees!
+    var longitude:CLLocationDegrees!
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -29,22 +29,32 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
         performSegue(withIdentifier: "tableToPost", sender: self)
     }
     
+    @objc func refreshView(){
+        print(DropManager.drops)
+        getData()
+        print(DropManager.drops)
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         manager.delegate = self as CLLocationManagerDelegate
         manager.desiredAccuracy = kCLLocationAccuracyBest // get the most accurate data
         manager.requestWhenInUseAuthorization() // request the location when user is using our app, not in backgroud
         manager.startUpdatingLocation()
+        
+        refreshView()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //DropManager.init()
-
         
-        getData()
-
+        refreshView()
+        self.tableView.reloadData()
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .redo, target: self, action: #selector(refreshView))
         
     }
     
@@ -76,7 +86,9 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
+        
+        print("DropCount:",DropManager.drops.count)
+        
         let i = DropManager.drops[indexPath.row]
         
         cell.textLabel?.text = "lat:\(i.latitude),long:\(i.longtitude),message:\(String(describing: i.message!))"
@@ -89,26 +101,45 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
     @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? PostViewController {
 //            dataRecieved = sourceViewController.dataPassed
-            DropManager.add(drop: sourceViewController.newDrop)
+//            DropManager.add(drop: sourceViewController.newDrop)
         }
     }
 
     func getData() {
+        
         print("get")
-        guard let url = URL(string: "http://localhost:443/api/message?latitude=44.5680134&longitude=-123.28739800000001&range=100") else { return }
+        guard let url = URL(string: "http://localhost:443/api/message?latitude=\(String(describing: latitude))&longitude=\(String(describing: longitude))&range=100") else { return }
+        
+        print(url)
+        
+        print("latitude:",String(describing: latitude)," ,longitude:",String(describing: longitude))
+        
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, err) in
             guard let data = data else { return }
             do {
-                print("A")
                 let package = try JSONDecoder().decode(Package.self, from: data)
-//                for user in users {
-                    print(package)
+//                for i in package.data.messages {
+//                    print(package.data.messages)
+                let messages = package.data.messages
+                
+                DropManager.clearAll() // clean Drops to prevent multiple loads
+                
+                for i in messages {
+//                    print(i)
+                    let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message)
+                    DropManager.add(drop: new)
+//                    print(DropManager.drops.count)
+                }
 //                    print()
 //                }
                 
-            } catch {}
+            } catch let err {
+                print(err)
+            }
         }
+        self.tableView.reloadData()
+        
         task.resume()
     }
 

@@ -12,13 +12,21 @@ struct Package:Encodable, Decodable{
     let data: Data
 }
 
+struct PackageForPost:Encodable, Decodable{
+    let data: DataForPost
+}
+
 struct Data:Encodable, Decodable{
     let messages: [Message]
 }
 
+struct DataForPost:Encodable, Decodable{
+    let message: Message
+}
+
 struct Message:Encodable,Decodable {
     
-    let UUID: Int
+    let uuid: Int
     let message: String
     let timestamp: String
     let latitude: String

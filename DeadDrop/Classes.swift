@@ -40,6 +40,10 @@ class DropManager {
         DropManager.drops.remove(at: index)
     }
     
+    static func clearAll () {
+            DropManager.drops.removeAll()
+    }
+    
 }
 
 
