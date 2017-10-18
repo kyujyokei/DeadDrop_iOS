@@ -76,7 +76,7 @@ func getDataFromDB( latitude:Float , longitude:Float , range:Float ) {
                 performUIUpdatesOnMain(){
                     // This uses the GCD Blackbox
 
-                    let destination = MainTableViewController() as! MainTableViewController
+                    let destination = MainTableViewController() 
                     destination.tableView.reloadData()
                 }
             }

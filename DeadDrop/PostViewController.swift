@@ -36,8 +36,9 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         print("POSTED")
 
-        let newMessage = Message(UUID: "123", message: "Hi", timestamp: "time", latitude: 2.2, longitude: 2.2)
-        let newPost = Data(message: newMessage)
+        let newMessage = Message(UUID: 1, message: "Hi", timestamp: "time", latitude: "2.2", longitude: "2.2")
+        let newData = Data(messages: [newMessage])
+        let newPost = Package(data: newData)
         // TODO: fix this
         // Do we have to generate the UUID?
 

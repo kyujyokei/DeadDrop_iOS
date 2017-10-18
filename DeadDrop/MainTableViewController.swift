@@ -9,12 +9,31 @@
 import UIKit
 import MapKit
 
-class MainTableViewController: UITableViewController {
+class MainTableViewController: UITableViewController, CLLocationManagerDelegate {
     
     //var dropArray:[Drop] = [Drop]()
     
-    func addTapped(){
+    let manager = CLLocationManager() // This is for getting user's current location
+    var latitude:CLLocationDegrees?
+    var longitude:CLLocationDegrees?
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let location = locations[0] // the most recent position
+        
+        latitude = location.coordinate.latitude
+        longitude = location.coordinate.longitude
+    }
+    
+    @objc func addTapped(){
         performSegue(withIdentifier: "tableToPost", sender: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        manager.delegate = self as CLLocationManagerDelegate
+        manager.desiredAccuracy = kCLLocationAccuracyBest // get the most accurate data
+        manager.requestWhenInUseAuthorization() // request the location when user is using our app, not in backgroud
+        manager.startUpdatingLocation()
     }
 
     override func viewDidLoad() {
@@ -22,14 +41,17 @@ class MainTableViewController: UITableViewController {
         
         //DropManager.init()
 
+        
+        getData()
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("dropArray.count:\(DropManager.drops.count)\n")
+        //print("dropArray.count:\(DropManager.drops.count)\n")
         self.tableView.reloadData()
-        getData()
+
         
     }
 
@@ -73,16 +95,17 @@ class MainTableViewController: UITableViewController {
 
     func getData() {
         print("get")
-        guard let url = URL(string: "localhost:3000/api/message") else { return }
+        guard let url = URL(string: "http://localhost:443/api/message?latitude=44.5680134&longitude=-123.28739800000001&range=100") else { return }
         let session = URLSession.shared
-        let task = session.dataTask(with: url) { (data, _, _) in
+        let task = session.dataTask(with: url) { (data, response, err) in
             guard let data = data else { return }
             do {
-                let data = try JSONDecoder().decode([Data].self, from: data)
+                print("A")
+                let package = try JSONDecoder().decode(Package.self, from: data)
 //                for user in users {
-//                    print(user.address.geo.lat)
+                    print(package)
+//                    print()
 //                }
-                print("data:\(data)")
                 
             } catch {}
         }

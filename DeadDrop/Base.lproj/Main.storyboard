@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="euB-oN-9sM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="euB-oN-9sM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -86,10 +86,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Cn-7s-3g8">
-                                <rect key="frame" x="283" y="327" width="63" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="63" id="OWX-WI-Rtb"/>
-                                </constraints>
+                                <rect key="frame" x="297" y="327" width="49" height="30"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="postButtonAction:" destination="Meq-GW-nU7" eventType="touchUpInside" id="9w9-67-gFv"/>
@@ -97,7 +94,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="240" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4C-0l-yOE">
-                                <rect key="frame" x="315.5" y="100" width="30.5" height="21"/>
+                                <rect key="frame" x="316" y="100" width="31" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -117,13 +114,13 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4Cn-7s-3g8" firstAttribute="trailing" secondItem="t4C-0l-yOE" secondAttribute="trailing" id="4ek-Sd-4sg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="t4C-0l-yOE" secondAttribute="trailing" constant="12" id="7Wg-FH-g1z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4Cn-7s-3g8" secondAttribute="trailing" constant="13" id="G59-3s-CyR"/>
                             <constraint firstItem="D3V-Ok-3SK" firstAttribute="top" secondItem="t4C-0l-yOE" secondAttribute="bottom" constant="5" id="N79-ry-3qT"/>
-                            <constraint firstItem="hnA-Ci-Aff" firstAttribute="top" secondItem="4Cn-7s-3g8" secondAttribute="bottom" constant="310" id="PMk-5t-EC4"/>
-                            <constraint firstItem="4Cn-7s-3g8" firstAttribute="trailing" secondItem="D3V-Ok-3SK" secondAttribute="trailing" id="ZZX-eL-9oL"/>
                             <constraint firstItem="D3V-Ok-3SK" firstAttribute="centerX" secondItem="btk-kr-O8M" secondAttribute="centerX" id="dbT-Pc-5BY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4Cn-7s-3g8" secondAttribute="trailing" constant="13" id="q65-pL-W9Z"/>
-                            <constraint firstItem="4Cn-7s-3g8" firstAttribute="top" secondItem="D3V-Ok-3SK" secondAttribute="bottom" constant="73" id="zDF-5X-HHf"/>
+                            <constraint firstItem="4Cn-7s-3g8" firstAttribute="top" secondItem="D3V-Ok-3SK" secondAttribute="bottom" constant="73" id="gQw-1R-4LW"/>
+                            <constraint firstItem="hnA-Ci-Aff" firstAttribute="top" secondItem="4Cn-7s-3g8" secondAttribute="bottom" constant="310" id="r7D-f6-xgf"/>
+                            <constraint firstItem="4Cn-7s-3g8" firstAttribute="trailing" secondItem="D3V-Ok-3SK" secondAttribute="trailing" id="uwt-Ot-rza"/>
                         </constraints>
                     </view>
                     <connections>
@@ -162,7 +159,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="w8z-6j-UX2"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" id="Www-E9-lND"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toMap" id="Www-E9-lND"/>
                         <segue destination="Meq-GW-nU7" kind="show" identifier="tableToPost" id="gRH-bf-fnv"/>
                     </connections>
                 </tableViewController>
@@ -176,7 +173,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="euB-oN-9sM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wn3-A8-42O">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
