@@ -36,11 +36,9 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         print("POSTED")
 
-        let newMessage = Message(uuid: 1, message: "Hi", timestamp: "time", latitude: "2.2", longitude: "2.2")
-        let newData = Data(messages: [newMessage])
-        let newPost = Package(data: newData)
-//        print("newPost:",newPost)
-        // TODO: fix this
+        let newPost = Message(message: "Hi", timestamp: "1", latitude: "1.1", longitude: "2.2")
+        
+        print("NewPost:",newPost)
 
         do {
             let jsonBody = try JSONEncoder().encode(newPost)
@@ -54,7 +52,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         let task = session.dataTask(with: request){ (data,response,err) in
             guard let data = data else {return}
             do{
-                let sendPost = try JSONDecoder().decode(Package.self, from: data)
+                let sendPost = try JSONDecoder().decode(Message.self, from: data)
                 print("sendPost:\(sendPost)")
             }catch let err{
                 print("Session Error: ",err)
