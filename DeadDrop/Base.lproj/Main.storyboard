@@ -10,69 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController storyboardIdentifier="MapViewController" id="BYZ-38-t0r" customClass="MapViewController" customModule="DeadDrop" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ugy-sq-nMW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLI-hI-LD8">
-                                <rect key="frame" x="167" y="587" width="40" height="40"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="af4-uF-isI"/>
-                                    <constraint firstAttribute="width" constant="40" id="kFD-dV-mnk"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <state key="normal" title="+">
-                                    <color key="titleColor" red="0.0039215686269999999" green="0.36470588240000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="postButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XnI-S8-q9x"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GpN-eg-EEV">
-                                <rect key="frame" x="166.5" y="549" width="42" height="21"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="aLI-hI-LD8" secondAttribute="bottom" constant="40" id="AeM-u8-rag"/>
-                            <constraint firstItem="Ugy-sq-nMW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="B6z-cZ-a7H"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ugy-sq-nMW" secondAttribute="bottom" id="DYw-ua-cuK"/>
-                            <constraint firstAttribute="trailing" secondItem="Ugy-sq-nMW" secondAttribute="trailing" id="Iam-2g-KZ7"/>
-                            <constraint firstItem="Ugy-sq-nMW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Reo-uU-LXE"/>
-                            <constraint firstItem="aLI-hI-LD8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RnU-Pt-Jjq"/>
-                            <constraint firstItem="aLI-hI-LD8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gOd-1m-uJx"/>
-                            <constraint firstItem="GpN-eg-EEV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h2z-6j-iiZ"/>
-                            <constraint firstItem="aLI-hI-LD8" firstAttribute="top" secondItem="GpN-eg-EEV" secondAttribute="bottom" constant="17" id="hWh-Bm-iEP"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="vuf-ze-ajt"/>
-                    <connections>
-                        <outlet property="locationLabel" destination="GpN-eg-EEV" id="0tg-XO-21T"/>
-                        <outlet property="mapView" destination="Ugy-sq-nMW" id="SLB-GL-Sea"/>
-                        <outlet property="postButton" destination="aLI-hI-LD8" id="sfH-0w-sr5"/>
-                        <segue destination="Meq-GW-nU7" kind="show" identifier="toPost" id="ncR-am-Bgq"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2015.2" y="137.18140929535232"/>
-        </scene>
         <!--Post View Controller-->
         <scene sceneID="gC1-hY-ofX">
             <objects>
@@ -132,7 +69,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ECw-Al-Cnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="HAu-5C-XVJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1982" y="-578"/>
+            <point key="canvasLocation" x="2020" y="139"/>
         </scene>
         <!--Main Table View Controller-->
         <scene sceneID="PJe-dV-cYi">
@@ -159,7 +96,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="w8z-6j-UX2"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="toMap" id="Www-E9-lND"/>
                         <segue destination="Meq-GW-nU7" kind="show" identifier="tableToPost" id="gRH-bf-fnv"/>
                     </connections>
                 </tableViewController>
@@ -186,7 +122,4 @@
             <point key="canvasLocation" x="398" y="139"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="gRH-bf-fnv"/>
-    </inferredMetricsTieBreakers>
 </document>

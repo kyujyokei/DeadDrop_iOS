@@ -27,9 +27,9 @@ class DropManager {
     
     @discardableResult
     init(){
-        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Hi"))
-        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Great to see you"))
-        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Boo"))
+        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "↑"))
+        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Tap Refresh to begin"))
+        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "^-^"))
     }
     
     static func add(drop:Drop){
