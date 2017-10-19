@@ -11,11 +11,9 @@ import MapKit
 
 class MainTableViewController: UITableViewController, CLLocationManagerDelegate {
     
-    //var dropArray:[Drop] = [Drop]()
-    
     let manager = CLLocationManager() // This is for getting user's current location
-    var latitude:CLLocationDegrees!
-    var longitude:CLLocationDegrees!
+    var latitude:CLLocationDegrees = 44.563781
+    var longitude:CLLocationDegrees = -123.279444
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -23,6 +21,8 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         latitude = location.coordinate.latitude
         longitude = location.coordinate.longitude
+        
+        getData()
     }
     
     @objc func addTapped(){
@@ -30,38 +30,36 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
     }
     
     @objc func refreshView(){
-        print(DropManager.drops)
-        getData()
-        print(DropManager.drops)
+//        print(DropManager.drops)
+
+//        print(DropManager.drops)
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
+        DropManager.init()
+        getData()
+        
         manager.delegate = self as CLLocationManagerDelegate
         manager.desiredAccuracy = kCLLocationAccuracyBest // get the most accurate data
         manager.requestWhenInUseAuthorization() // request the location when user is using our app, not in backgroud
         manager.startUpdatingLocation()
         
-        refreshView()
+//        getData()
+        
+        self.tableView.reloadData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //DropManager.init()
-        
+//        getData()
         refreshView()
         self.tableView.reloadData()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .redo, target: self, action: #selector(refreshView))
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        //print("dropArray.count:\(DropManager.drops.count)\n")
-        self.tableView.reloadData()
-
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshView))
         
     }
 
@@ -87,28 +85,29 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        print("DropCount:",DropManager.drops.count)
+//        print("DropCount:",DropManager.drops.count)
         
         let i = DropManager.drops[indexPath.row]
         
-        cell.textLabel?.text = "lat:\(i.latitude),long:\(i.longtitude),message:\(String(describing: i.message!))"
+//        cell.textLabel?.text = "lat:\(i.latitude),long:\(i.longtitude),message:\(String(describing: i.message!))"
+        cell.textLabel?.text = "\(String(describing: i.message!))"
         
         //print(String((cell.textLabel?.text!)!)!)
         
         return cell
     }
     
-    @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? PostViewController {
-//            dataRecieved = sourceViewController.dataPassed
-//            DropManager.add(drop: sourceViewController.newDrop)
-        }
-    }
+//    @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
+//        if let sourceViewController = sender.source as? PostViewController {
+////            dataRecieved = sourceViewController.dataPassed
+////            DropManager.add(drop: sourceViewController.newDrop)
+//        }
+//    }
 
     func getData() {
         
         print("get")
-        guard let url = URL(string: "http://localhost:443/api/message?latitude=\(String(describing: latitude))&longitude=\(String(describing: longitude))&range=100") else { return }
+        guard let url = URL(string: "http://localhost:443/api/message?latitude=\(latitude)&longitude=\(longitude)&range=100") else { return }
         
         print(url)
         
@@ -138,7 +137,9 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
                 print(err)
             }
         }
-        self.tableView.reloadData()
+        performUIUpdatesOnMain {
+            self.tableView.reloadData()
+        }
         
         task.resume()
     }

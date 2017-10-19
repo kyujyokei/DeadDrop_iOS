@@ -26,11 +26,7 @@ class DropManager {
     static var drops:[Drop] = []
     
     @discardableResult
-    init(){
-        DropManager.drops.append(Drop.init(lat: 1.1111, long: 2.2222, message: "This is the first message"))
-        DropManager.drops.append(Drop.init(lat: 2.1111, long: 2.2222, message: "This is the second message"))
-        DropManager.drops.append(Drop.init(lat: 3.1111, long: 2.2222, message: "This is the third message"))
-    }
+    init(){}
     
     static func add(drop:Drop){
         DropManager.drops.append(drop)

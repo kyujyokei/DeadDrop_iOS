@@ -15,8 +15,8 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     
     //var currentLocation:CLLocation?
     var newDrop = Drop.init(lat: 0.0, long: 0.0, message: "")
-    var latitude:CLLocationDegrees?
-    var longitude:CLLocationDegrees?
+    var latitude:CLLocationDegrees!
+    var longitude:CLLocationDegrees!
     
     @IBOutlet weak var postTextView: UITextView!
 
@@ -27,38 +27,49 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     
     @IBAction func postButtonAction(_ sender: UIButton) {
         
-//        newDrop.latitude = latitude!
-//        newDrop.longtitude = longitude!
-//        newDrop.message = postTextView.text
         guard let url = URL(string:"http://localhost:443/api/message") else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         print("POSTED")
-
-        let newPost = Message(message: "Hi", timestamp: "1", latitude: "1.1", longitude: "2.2")
         
-        print("NewPost:",newPost)
+        let date : Date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateTime = dateFormatter.string(from: date)
+  
+        let newPost = MessageForPost(message: postTextView.text, timestamp: dateTime, latitude: String(latitude), longitude: String(longitude))
+        let newData = DataForPost(message: newPost)
+        let newPackage = PackageForPost(data: newData)
 
         do {
-            let jsonBody = try JSONEncoder().encode(newPost)
+            let jsonBody = try JSONEncoder().encode(newPackage)
             request.httpBody = jsonBody
             print("jsonBody:",jsonBody)
+            let jsonBodyString = String(data: jsonBody, encoding: .utf8)
+            print("JSON String : ", jsonBodyString!)
         } catch let err  {
             print("jsonBody Error: ",err)
         }
 
         let session = URLSession.shared
         let task = session.dataTask(with: request){ (data,response,err) in
-            guard let data = data else {return}
+            
+            guard let response = response,let data = data else {return}
+            print("RESPONSE:",response)
             do{
-                let sendPost = try JSONDecoder().decode(Message.self, from: data)
-                print("sendPost:\(sendPost)")
+//                print("NSDATA:",data as NSData)
+//                let sendPost = try JSONDecoder().decode(PackageForPost.self, from: data)
+//                let parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+//                print("PARSED RESULT:\(sendPost)")
             }catch let err{
+
                 print("Session Error: ",err)
             }
         }
         task.resume()
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     // Get the current location of user
