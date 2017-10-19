@@ -12,8 +12,8 @@ import MapKit
 class MainTableViewController: UITableViewController, CLLocationManagerDelegate {
     
     let manager = CLLocationManager() // This is for getting user's current location
-    var latitude:CLLocationDegrees = 44.563781
-    var longitude:CLLocationDegrees = -123.279444
+    var latitude:CLLocationDegrees?
+    var longitude:CLLocationDegrees?
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -22,7 +22,7 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
         latitude = location.coordinate.latitude
         longitude = location.coordinate.longitude
         
-        getData()
+        getData(latitude: latitude!, longitude: longitude!)
     }
     
     @objc func addTapped(){
@@ -31,21 +31,20 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
     
     @objc func refreshView(){
 //        print(DropManager.drops)
-
+        getData(latitude: latitude!, longitude: longitude!)
+        tableView.reloadData()
 //        print(DropManager.drops)
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         DropManager.init()
-        getData()
+//        getData()
         
         manager.delegate = self as CLLocationManagerDelegate
         manager.desiredAccuracy = kCLLocationAccuracyBest // get the most accurate data
         manager.requestWhenInUseAuthorization() // request the location when user is using our app, not in backgroud
         manager.startUpdatingLocation()
-        
-//        getData()
         
         self.tableView.reloadData()
     }
@@ -55,7 +54,7 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         //DropManager.init()
 //        getData()
-        refreshView()
+
         self.tableView.reloadData()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
@@ -104,44 +103,5 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
 //        }
 //    }
 
-    func getData() {
-        
-        print("get")
-        guard let url = URL(string: "http://localhost:443/api/message?latitude=\(latitude)&longitude=\(longitude)&range=100") else { return }
-        
-        print(url)
-        
-        print("latitude:",String(describing: latitude)," ,longitude:",String(describing: longitude))
-        
-        let session = URLSession.shared
-        let task = session.dataTask(with: url) { (data, response, err) in
-            guard let data = data else { return }
-            do {
-                let package = try JSONDecoder().decode(Package.self, from: data)
-//                for i in package.data.messages {
-//                    print(package.data.messages)
-                let messages = package.data.messages
-                
-                DropManager.clearAll() // clean Drops to prevent multiple loads
-                
-                for i in messages {
-//                    print(i)
-                    let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message)
-                    DropManager.add(drop: new)
-//                    print(DropManager.drops.count)
-                }
-//                    print()
-//                }
-                
-            } catch let err {
-                print(err)
-            }
-        }
-        performUIUpdatesOnMain {
-            self.tableView.reloadData()
-        }
-        
-        task.resume()
-    }
-
+    
 }

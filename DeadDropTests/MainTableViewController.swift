@@ -36,22 +36,6 @@ class MainTableViewController: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        
-//        //        if indexPath.row == 1 {
-//        //            cell.textLabel?.text = "1"
-//        //        } else if indexPath.row == 2 {
-//        //            cell.textLabel?.text = "2"
-//        //        } else {
-//        //            cell.textLabel?.text = "3"
-//        //        }
-//        cell.textLabel?.text = "3"
-//        
-//        return cell
-//    }
 
     
 }

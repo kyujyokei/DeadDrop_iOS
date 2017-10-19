@@ -27,7 +27,7 @@ class DeadDropTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
-        
+        DropManager.clearAll()
         DropManager.drops = []
         
     }
@@ -76,7 +76,17 @@ class DeadDropTests: XCTestCase {
         let vc = storyboard.instantiateViewController(withIdentifier: "InitialViewController") as! UITableViewController
         XCTAssertNotNil(vc.view, "Problems initializing view")
         let cell = vc.tableView(vc.tableView, cellForRowAt:IndexPath(row:0,section:0))
-        XCTAssertEqual(cell.textLabel?.text, "lat:1.1111,long:2.2222,message:This is the first message")
+        XCTAssertEqual(cell.textLabel?.text, "Hi")
+    }
+    
+    func testGetData(){
+        
+        getData(latitude: 1.1, longitude: 2.2)
+    
+        XCTAssertNotEqual(DropManager.drops.count, 0)
+        
+        
+        
     }
     
     

@@ -13,7 +13,6 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     
     let manager = CLLocationManager() // This is for getting user's current location
     
-    //var currentLocation:CLLocation?
     var newDrop = Drop.init(lat: 0.0, long: 0.0, message: "")
     var latitude:CLLocationDegrees!
     var longitude:CLLocationDegrees!
@@ -21,13 +20,13 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     @IBOutlet weak var postTextView: UITextView!
 
     @IBOutlet weak var wordCountLabel: UILabel!
-    var wordCount = 20 // sets the maximum limit for inputting words
+    var wordCount = 280 // sets the maximum limit for inputting words
     
     @IBOutlet weak var postButton: UIButton!
     
     @IBAction func postButtonAction(_ sender: UIButton) {
         
-        guard let url = URL(string:"http://localhost:443/api/message") else {return}
+        guard let url = URL(string:"https://deaddrop.live/api/message") else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
