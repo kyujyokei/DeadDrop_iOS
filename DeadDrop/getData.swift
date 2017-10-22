@@ -20,7 +20,8 @@ func getData(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
     
     let session = URLSession.shared
     let task = session.dataTask(with: url) { (data, response, err) in
-        guard let data = data else { return }
+        guard let response = response,let data = data else { return }
+        print("RESPONSE:",response)
         do {
             let package = try JSONDecoder().decode(Package.self, from: data)
             //                for i in package.data.messages {
