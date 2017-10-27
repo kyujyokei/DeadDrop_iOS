@@ -38,7 +38,7 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
     
     
     override func viewWillAppear(_ animated: Bool) {
-        DropManager.init()
+//        DropManager.init()
 //        getData()
         
         manager.delegate = self as CLLocationManagerDelegate
@@ -82,16 +82,16 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
         
-//        print("DropCount:",DropManager.drops.count)
         
         let i = DropManager.drops[indexPath.row]
         
-//        cell.textLabel?.text = "lat:\(i.latitude),long:\(i.longtitude),message:\(String(describing: i.message!))"
-        cell.textLabel?.text = "\(String(describing: i.message!))"
+        // this part of code allows messages to be multiple lines in label
+        cell.messageLabel.lineBreakMode = .byWordWrapping
+        cell.messageLabel.numberOfLines = 0
         
-        //print(String((cell.textLabel?.text!)!)!)
+        cell.messageLabel.text = "\(String(describing: i.message!))"
         
         return cell
     }
