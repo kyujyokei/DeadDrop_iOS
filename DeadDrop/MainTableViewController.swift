@@ -87,7 +87,7 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         let i = DropManager.drops[indexPath.row]
         
-        // this part of code allows messages to be multiple lines in label
+        // this part allows messages to be multiple lines in label
         cell.messageLabel.lineBreakMode = .byWordWrapping
         cell.messageLabel.numberOfLines = 0
         
