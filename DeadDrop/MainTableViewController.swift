@@ -52,9 +52,9 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //DropManager.init()
-//        getData()
-
+        // this allows table view to have dynamic height base on the contents of labels
+        tableView.estimatedRowHeight = 300
+        tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.reloadData()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
@@ -90,6 +90,9 @@ class MainTableViewController: UITableViewController, CLLocationManagerDelegate 
         // this part of code allows messages to be multiple lines in label
         cell.messageLabel.lineBreakMode = .byWordWrapping
         cell.messageLabel.numberOfLines = 0
+        
+        cell.timeLabel.text = "5 mins ago"
+        cell.distanceLabel.text = "200m"
         
         cell.messageLabel.text = "\(String(describing: i.message!))"
         
