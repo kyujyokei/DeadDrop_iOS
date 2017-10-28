@@ -44,7 +44,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         manager.desiredAccuracy = kCLLocationAccuracyBest // get the most accurate data
         manager.requestWhenInUseAuthorization() // request the location when user is using our app, not in backgroud
         manager.startUpdatingLocation()
-        
         self.tableView.reloadData()
     }
     

@@ -159,7 +159,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJ8-Px-VMD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="192" height="21"/>
+                                                    <rect key="frame" x="10" y="7" width="192" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" red="1" green="0.65676540800000005" blue="0.065945095489999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -171,7 +171,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NE8-zB-0Ks">
-                                                    <rect key="frame" x="200" y="0.0" width="175" height="21"/>
+                                                    <rect key="frame" x="200" y="10" width="175" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -184,14 +184,14 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="NE8-zB-0Ks" firstAttribute="top" secondItem="lBM-h1-azU" secondAttribute="top" id="1Uc-Zv-VHv"/>
+                                                <constraint firstItem="NE8-zB-0Ks" firstAttribute="top" secondItem="lBM-h1-azU" secondAttribute="top" constant="10" id="1Uc-Zv-VHv"/>
                                                 <constraint firstAttribute="bottom" secondItem="xSY-Zw-D2S" secondAttribute="bottom" constant="8.5" id="4sL-sX-ngA"/>
                                                 <constraint firstItem="aAz-xJ-iSy" firstAttribute="leading" secondItem="lBM-h1-azU" secondAttribute="leadingMargin" constant="-8" id="Hhv-yC-Ugr"/>
                                                 <constraint firstItem="aAz-xJ-iSy" firstAttribute="trailing" secondItem="lBM-h1-azU" secondAttribute="trailingMargin" constant="8" id="Jei-km-mcZ"/>
-                                                <constraint firstItem="TJ8-Px-VMD" firstAttribute="leading" secondItem="lBM-h1-azU" secondAttribute="leading" id="VeG-BT-hM9"/>
-                                                <constraint firstItem="TJ8-Px-VMD" firstAttribute="top" secondItem="lBM-h1-azU" secondAttribute="top" id="XYx-8E-QQl"/>
+                                                <constraint firstItem="TJ8-Px-VMD" firstAttribute="leading" secondItem="lBM-h1-azU" secondAttribute="leading" constant="10" id="VeG-BT-hM9"/>
+                                                <constraint firstItem="TJ8-Px-VMD" firstAttribute="top" secondItem="lBM-h1-azU" secondAttribute="top" constant="7" id="XYx-8E-QQl"/>
                                                 <constraint firstItem="xSY-Zw-D2S" firstAttribute="top" secondItem="aAz-xJ-iSy" secondAttribute="bottom" constant="8" id="cf8-BN-k1y"/>
-                                                <constraint firstItem="aAz-xJ-iSy" firstAttribute="top" secondItem="TJ8-Px-VMD" secondAttribute="bottom" constant="10" id="jw2-mH-snn"/>
+                                                <constraint firstItem="aAz-xJ-iSy" firstAttribute="top" secondItem="TJ8-Px-VMD" secondAttribute="bottom" constant="3" id="jw2-mH-snn"/>
                                                 <constraint firstAttribute="trailing" secondItem="xSY-Zw-D2S" secondAttribute="trailing" id="mdd-H5-Aon"/>
                                                 <constraint firstAttribute="trailing" secondItem="NE8-zB-0Ks" secondAttribute="trailing" id="ydy-eT-C8l"/>
                                             </constraints>

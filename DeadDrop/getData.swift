@@ -42,10 +42,10 @@ func getData(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
             print(err)
         }
     }
-    performUIUpdatesOnMain {
-        let vc = MainTableViewController()
-        vc.tableView.reloadData()
-    }
+//    DispatchQueue.main.async{
+//        let vc = MainViewController()
+//        vc.tableView.reloadData()
+//    }
     
     task.resume()
 }
