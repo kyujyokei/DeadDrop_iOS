@@ -15,6 +15,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     var latitude:CLLocationDegrees?
     var longitude:CLLocationDegrees?
     
+    let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     @IBOutlet weak var addBtn: UIButton!
     
     @IBAction func addBtnAction(_ sender: UIButton) {
@@ -45,6 +47,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = .gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        
         manager.delegate = self as CLLocationManagerDelegate
         manager.desiredAccuracy = kCLLocationAccuracyBest // get the most accurate data
         manager.requestWhenInUseAuthorization() // request the location when user is using our app, not in backgroud
@@ -61,6 +69,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.reloadData()
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,5 +109,51 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
         return cell
     }
+    
+    func getData(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
+        
+        print("get")
+        guard let url = URL(string: "https://deaddrop.live/api/message?latitude=\(latitude)&longitude=\(longitude)&range=100") else { return }
+        
+        print(url)
+        
+        print("latitude:",String(describing: latitude)," ,longitude:",String(describing: longitude))
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: url) { (data, response, err) in
+            guard let data = data else { return }
+            do {
+                let package = try JSONDecoder().decode(Package.self, from: data)
+                //                for i in package.data.messages {
+                //                    print(package.data.messages)
+                let messages = package.data.messages
+                
+                DropManager.clearAll() // clean Drops to prevent multiple loads
+                
+                for i in messages {
+                    //                    print(i)
+                    let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message)
+                    DropManager.add(drop: new)
+                    //                    print(DropManager.drops.count)
+                }
+                //                    print()
+                //                }
+                
+            } catch let err {
+                print(err)
+            }
+        }
+        
+        performUIUpdatesOnMain{
+            //        let vc = MainViewController()
+            self.tableView.reloadData()
+            self.activityIndicator.stopAnimating()
+        }
+        
+        task.resume()
+    }
+    
+
 
 }
+

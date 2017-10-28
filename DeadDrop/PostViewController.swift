@@ -91,29 +91,30 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     // if the text changes in text view
     // returns a bool, if false we don't want to add more characters
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
         if range.length + range.location > postTextView.text.characters.count {
             return false
         }
         let newLength = postTextView.text.characters.count + text.characters.count - range.length
-        
+
         let wordLeft = wordCount - (postTextView.text.characters.count + text.characters.count)
         // postTextView.text.characters.count is the accumulated word count already inputed
         // text.characters.count is the word count you just inputted (usually = 1)
-        if (postTextView.text.characters.count == 0){
+        if (newLength == 0){
             self.postButton.isEnabled = false
-        } else if (wordLeft > 0 ) {
-            
+        }else if (wordLeft > 0 ) {
             self.postButton.isEnabled = true
-            self.wordCountLabel.text = String(wordCount - (postTextView.text.characters.count + text.characters.count))
+            self.wordCountLabel.text = String(wordCount - (newLength))
             // updates the word count label
             self.wordCountLabel.textColor = UIColor.black
-            
+
         } else if (wordLeft == 0){
             self.wordCountLabel.text = "0"
             self.wordCountLabel.textColor = UIColor.red
         }
-        //print("\(postTextView.text.characters.count)  \(text.characters.count)")
-        
+        print("\(postTextView.text.characters.count)  \(text.characters.count)")
+        print("newLength:\(newLength)")
+
         return newLength <= wordCount // will stop input after reaching this limit
     }
     
@@ -126,6 +127,8 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         manager.desiredAccuracy = kCLLocationAccuracyBest // get the most accurate data
         manager.requestWhenInUseAuthorization() // request the location when user is using our app, not in backgroud
         manager.startUpdatingLocation()
+        
+        postButton.isEnabled = false
         
         
     }
