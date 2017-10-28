@@ -15,6 +15,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     var latitude:CLLocationDegrees?
     var longitude:CLLocationDegrees?
     
+    @IBOutlet weak var addBtn: UIButton!
+    
+    @IBAction func addBtnAction(_ sender: UIButton) {
+    }
+    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -50,6 +55,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        addBtn.layer.cornerRadius = 0.5 * addBtn.bounds.size.width
+        addBtn.clipsToBounds = true
+        
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.reloadData()

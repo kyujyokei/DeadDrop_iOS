@@ -24,6 +24,11 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     
     @IBOutlet weak var postButton: UIButton!
     
+    @IBAction func closeBtnAction(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     @IBAction func postButtonAction(_ sender: UIButton) {
         
         guard let url = URL(string:"https://deaddrop.live/api/message") else {return}
