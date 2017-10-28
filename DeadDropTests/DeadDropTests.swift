@@ -76,14 +76,17 @@ class DeadDropTests: XCTestCase {
         let vc = storyboard.instantiateViewController(withIdentifier: "InitialViewController") as! UITableViewController
         XCTAssertNotNil(vc.view, "Problems initializing view")
         let cell = vc.tableView(vc.tableView, cellForRowAt:IndexPath(row:0,section:0))
-        XCTAssertEqual(cell.textLabel?.text, "↑")
+        XCTAssertEqual(cell.textLabel?.text, "Hi")
     }
     
     func testGetData(){
         
         getData(latitude: 1.1, longitude: 2.2)
+    
         XCTAssertNotEqual(DropManager.drops.count, 0)
-
+        
+        
+        
     }
     
     
