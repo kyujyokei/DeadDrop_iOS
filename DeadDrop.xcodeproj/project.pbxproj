@@ -21,7 +21,7 @@
 		C98C93981F82FE5700AA5609 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98C93971F82FE5700AA5609 /* PostViewController.swift */; };
 		C98C939A1F83030000AA5609 /* DropManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98C93991F83030000AA5609 /* DropManager.swift */; };
 		C99B52E81FA301BB005E7E75 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99B52E71FA301BB005E7E75 /* MainTableViewCell.swift */; };
-		C9BAAF7A1F8D898D0076F81F /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BAAF791F8D898D0076F81F /* MainTableViewController.swift */; };
+		C99B52EA1FA3FAE2005E7E75 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99B52E91FA3FAE2005E7E75 /* MainViewController.swift */; };
 		C9DF703F1F8AF57B0052837A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DF703E1F8AF57B0052837A /* CoreLocation.framework */; };
 		C9EF802F1F8D904200162F6E /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF802E1F8D904200162F6E /* MainTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -64,7 +64,7 @@
 		C98C93971F82FE5700AA5609 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		C98C93991F83030000AA5609 /* DropManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropManager.swift; sourceTree = "<group>"; };
 		C99B52E71FA301BB005E7E75 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
-		C9BAAF791F8D898D0076F81F /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		C99B52E91FA3FAE2005E7E75 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C9DF703E1F8AF57B0052837A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C9EF802E1F8D904200162F6E /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				C97BBD741F81071A0060F518 /* AppDelegate.swift */,
-				C9BAAF791F8D898D0076F81F /* MainTableViewController.swift */,
+				C99B52E91FA3FAE2005E7E75 /* MainViewController.swift */,
 				C99B52E71FA301BB005E7E75 /* MainTableViewCell.swift */,
 				C94B22351F994BCE001E0B3C /* getData.swift */,
 				C98C93971F82FE5700AA5609 /* PostViewController.swift */,
@@ -308,10 +308,10 @@
 				C97BBD771F81071A0060F518 /* MapViewController.swift in Sources */,
 				C94B22361F994BCE001E0B3C /* getData.swift in Sources */,
 				C98C939A1F83030000AA5609 /* DropManager.swift in Sources */,
-				C9BAAF7A1F8D898D0076F81F /* MainTableViewController.swift in Sources */,
 				C97BBD751F81071A0060F518 /* AppDelegate.swift in Sources */,
 				C949CF8A1F92E02100EA48DC /* GCDBlackBox.swift in Sources */,
 				C909C5C91F95BFB8005A758D /* Post.swift in Sources */,
+				C99B52EA1FA3FAE2005E7E75 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
