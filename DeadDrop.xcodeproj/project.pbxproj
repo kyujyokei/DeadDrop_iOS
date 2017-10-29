@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C909C5C91F95BFB8005A758D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909C5C81F95BFB8005A758D /* Post.swift */; };
+		C921349A1FA5836A002FEB72 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92134991FA5836A002FEB72 /* LoginViewController.swift */; };
 		C945FC8E1F96D77400D7CF3E /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = C945FC8D1F96D77300D7CF3E /* test.json */; };
 		C949CF8A1F92E02100EA48DC /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949CF891F92E02100EA48DC /* GCDBlackBox.swift */; };
 		C94B22361F994BCE001E0B3C /* getData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94B22351F994BCE001E0B3C /* getData.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		C909C5C81F95BFB8005A758D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		C92134991FA5836A002FEB72 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C945FC8D1F96D77300D7CF3E /* test.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		C949CF891F92E02100EA48DC /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		C94B22351F994BCE001E0B3C /* getData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getData.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				C97BBD741F81071A0060F518 /* AppDelegate.swift */,
+				C92134991FA5836A002FEB72 /* LoginViewController.swift */,
 				C99B52E91FA3FAE2005E7E75 /* MainViewController.swift */,
 				C99B52E71FA301BB005E7E75 /* MainTableViewCell.swift */,
 				C94B22351F994BCE001E0B3C /* getData.swift */,
@@ -311,6 +314,7 @@
 				C97BBD751F81071A0060F518 /* AppDelegate.swift in Sources */,
 				C949CF8A1F92E02100EA48DC /* GCDBlackBox.swift in Sources */,
 				C909C5C91F95BFB8005A758D /* Post.swift in Sources */,
+				C921349A1FA5836A002FEB72 /* LoginViewController.swift in Sources */,
 				C99B52EA1FA3FAE2005E7E75 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

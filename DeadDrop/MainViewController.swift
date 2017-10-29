@@ -121,23 +121,19 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, err) in
-            guard let data = data else { return }
+            guard let data = data, let response = response else { return }
             do {
                 let package = try JSONDecoder().decode(Package.self, from: data)
-                //                for i in package.data.messages {
-                //                    print(package.data.messages)
+
                 let messages = package.data.messages
                 
                 DropManager.clearAll() // clean Drops to prevent multiple loads
                 
                 for i in messages {
-                    //                    print(i)
                     let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message)
                     DropManager.add(drop: new)
-                    //                    print(DropManager.drops.count)
                 }
-                //                    print()
-                //                }
+
                 
             } catch let err {
                 print(err)

@@ -41,4 +41,9 @@ struct MessageForPost:Codable {
     let longitude: String
 }
 
+struct Response:Codable {
+    let response: String
+    
+}
+
 

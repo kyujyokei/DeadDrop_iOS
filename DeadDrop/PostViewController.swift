@@ -13,6 +13,10 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     
     let manager = CLLocationManager() // This is for getting user's current location
     
+    let uploadAlert = UIAlertController(title: "Uploading",
+                                        message: "Please wait",
+                                        preferredStyle: .alert)
+    
     var newDrop = Drop.init(lat: 0.0, long: 0.0, message: "")
     var latitude:CLLocationDegrees!
     var longitude:CLLocationDegrees!
@@ -30,6 +34,12 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     
     
     @IBAction func postButtonAction(_ sender: UIButton) {
+        
+        // this part generates the upload alet view
+
+        self.present(uploadAlert, animated: true, completion:  nil)
+        
+        
         
         guard let url = URL(string:"https://deaddrop.live/api/message") else {return}
         var request = URLRequest(url: url)
@@ -66,14 +76,26 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
 //                let sendPost = try JSONDecoder().decode(PackageForPost.self, from: data)
 //                let parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
 //                print("PARSED RESULT:\(sendPost)")
+//                let responseStatus = try JSONDecoder().decode(Response.self, from: response)
+
+                
             }catch let err{
 
                 print("Session Error: ",err)
             }
         }
+        performUIUpdatesOnMain {
+            self.uploadAlert.dismiss(animated: true, completion: nil)
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            
+        }
+        
         task.resume()
-        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+
     }
     
     // Get the current location of user
