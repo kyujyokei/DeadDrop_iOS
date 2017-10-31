@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var usernameTextField: UITextField!
@@ -29,6 +29,10 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+        
 
         let background = UIImage(named: "bg.png")
         
@@ -61,6 +65,14 @@ class LoginViewController: UIViewController {
     }
     
 
+    
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        // dismiss keyboard with "return" key
+        self.view.endEditing()
+        return true
+    }
+    
+    
     /*
     // MARK: - Navigation
 

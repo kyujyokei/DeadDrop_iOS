@@ -80,7 +80,8 @@ class DeadDropTests: XCTestCase {
     }
     
     func testGetData(){
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "InitialViewController") as! UITableViewController
         getData(latitude: 1.1, longitude: 2.2)
     
         XCTAssertNotEqual(DropManager.drops.count, 0)

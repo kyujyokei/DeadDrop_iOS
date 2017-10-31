@@ -70,8 +70,21 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.reloadData()
         
+        //https://stackoverflow.com/questions/24475792/how-to-use-pull-to-refresh-in-swift
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
         
+        // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
+        tableView.refreshControl = refreshControl
+    }
+    
+    func doSomething(refreshControl: UIRefreshControl) {
         
+        getData(latitude: latitude!, longitude: longitude!)
+        tableView.reloadData()
+        
+        // somewhere in your code you might need to call:
+        refreshControl.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {

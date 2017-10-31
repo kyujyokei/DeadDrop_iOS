@@ -152,6 +152,8 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         
         postButton.isEnabled = false
         
+        postTextView.becomeFirstResponder() // pulls out the keyboard
+        
         
     }
     
