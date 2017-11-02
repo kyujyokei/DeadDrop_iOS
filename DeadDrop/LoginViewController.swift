@@ -68,7 +68,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
         // dismiss keyboard with "return" key
-        self.view.endEditing()
+        self.view.endEditing(true)
         return true
     }
     
