@@ -13,6 +13,8 @@ import CoreLocation
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     let manager = CLLocationManager() // This is for getting user's current location
+    var latitude:CLLocationDegrees?
+    var longitude:CLLocationDegrees?
     
     var currentLocation:CLLocation?
     
@@ -23,10 +25,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var locationLabel: UILabel! // This is the location label for testing
     
     
+    
+    
     var message:String = "Test of viewDidAppear"
     
     @IBAction func postButtonAction(_ sender: UIButton) {
         performSegue(withIdentifier: "toPost", sender: self)
+    }
+    
+    @IBAction func refreshBtnAction(_ sender: UIButton) {
+        getData(latitude: latitude!, longitude: longitude!)
     }
     
     
@@ -42,7 +50,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
         mapView.setRegion(region, animated: true)
         
+        latitude = location.coordinate.latitude
+        longitude = location.coordinate.longitude
+        
         self.mapView.showsUserLocation = true // creates the blue dot on the map
+        
+        getData(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
     }
     
@@ -99,45 +112,92 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//
+//            // https://stackoverflow.com/questions/37446219/swift-2-multiline-mkpointannotation
+//
+//        let identifier = "annotaion"
+//
+//        if annotation.isKind(of: MKUserLocation.self) {
+//            return nil
+//        }
+//
+//        var annotationView: MKPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+//
+//        if annotationView == nil {
+//
+//            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//            annotationView?.canShowCallout = true
+//
+//            let label1 = UILabel(frame: CGRectMake(0, 0, 200, 21))
+//            label1.text = "Some text1 some text2 some text2 some text2 some text2 some text2 some text2"
+//            label1.numberOfLines = 0
+//            annotationView!.detailCalloutAccessoryView = label1;
+//
+//            let width = NSLayoutConstraint(item: label1, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 200)
+//            label1.addConstraint(width)
+//
+//
+//            let height = NSLayoutConstraint(item: label1, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 90)
+//            label1.addConstraint(height)
+//
+//
+//
+//        } else {
+//            annotationView!.annotation = annotation
+//        }
+//
+//        return annotationView
+//    }
+//
+//    func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
+//        return CGRect(x: x, y: y, width: width, height: height)
+//    }
     
-            // https://stackoverflow.com/questions/37446219/swift-2-multiline-mkpointannotation
+    
+    
+    
+    func getData(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
         
-        let identifier = "annotaion"
+        print("get")
+        guard let url = URL(string: "https://deaddrop.live/api/message?latitude=\(latitude)&longitude=\(longitude)&range=100") else { return }
         
-        if annotation.isKind(of: MKUserLocation.self) {
-            return nil
+        print(url)
+        
+        print("latitude:",String(describing: latitude)," ,longitude:",String(describing: longitude))
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: url) { (data, response, err) in
+            guard let data = data, let response = response else { return }
+            do {
+                let package = try JSONDecoder().decode(Package.self, from: data)
+                
+                let messages = package.data.messages
+                
+                DropManager.clearAll() // clean Drops to prevent multiple loads
+                
+                for i in messages {
+                    let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message)
+                    DropManager.add(drop: new)
+                    let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake( new.latitude , new.longtitude )
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = location
+                    
+                    annotation.title = new.message
+                    self.mapView.addAnnotation(annotation)
+                }
+                
+                
+            } catch let err {
+                print(err)
+            }
         }
         
-        var annotationView: MKPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
-        
-        if annotationView == nil {
-            
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView?.canShowCallout = true
-            
-            let label1 = UILabel(frame: CGRectMake(0, 0, 200, 21))
-            label1.text = "Some text1 some text2 some text2 some text2 some text2 some text2 some text2"
-            label1.numberOfLines = 0
-            annotationView!.detailCalloutAccessoryView = label1;
-            
-            let width = NSLayoutConstraint(item: label1, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 200)
-            label1.addConstraint(width)
-            
-            
-            let height = NSLayoutConstraint(item: label1, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 90)
-            label1.addConstraint(height)
-            
-            
-            
-        } else {
-            annotationView!.annotation = annotation
+        performUIUpdatesOnMain{
+
         }
-        return annotationView
-    }
-    
-    func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
-        return CGRect(x: x, y: y, width: width, height: height)
+        
+        task.resume()
     }
 
 

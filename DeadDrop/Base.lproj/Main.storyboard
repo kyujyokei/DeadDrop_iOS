@@ -131,13 +131,14 @@
                                     <action selector="postButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XnI-S8-q9x"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GpN-eg-EEV">
-                                <rect key="frame" x="166.5" y="549" width="42" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpv-Vx-Wb9">
+                                <rect key="frame" x="226" y="597" width="69" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Refresh"/>
+                                <connections>
+                                    <action selector="refreshBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2IR-u9-20G"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -147,22 +148,40 @@
                             <constraint firstAttribute="trailing" secondItem="Ugy-sq-nMW" secondAttribute="trailing" id="Iam-2g-KZ7"/>
                             <constraint firstItem="Ugy-sq-nMW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Reo-uU-LXE"/>
                             <constraint firstItem="aLI-hI-LD8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RnU-Pt-Jjq"/>
+                            <constraint firstItem="hpv-Vx-Wb9" firstAttribute="bottom" secondItem="aLI-hI-LD8" secondAttribute="bottom" id="YCB-xJ-x1j"/>
                             <constraint firstItem="aLI-hI-LD8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gOd-1m-uJx"/>
-                            <constraint firstItem="GpN-eg-EEV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h2z-6j-iiZ"/>
-                            <constraint firstItem="aLI-hI-LD8" firstAttribute="top" secondItem="GpN-eg-EEV" secondAttribute="bottom" constant="17" id="hWh-Bm-iEP"/>
+                            <constraint firstItem="hpv-Vx-Wb9" firstAttribute="leading" secondItem="aLI-hI-LD8" secondAttribute="trailing" constant="19" id="jg6-Fq-miS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vuf-ze-ajt"/>
                     <connections>
-                        <outlet property="locationLabel" destination="GpN-eg-EEV" id="0tg-XO-21T"/>
                         <outlet property="mapView" destination="Ugy-sq-nMW" id="SLB-GL-Sea"/>
                         <outlet property="postButton" destination="aLI-hI-LD8" id="sfH-0w-sr5"/>
                         <segue destination="Meq-GW-nU7" kind="show" identifier="toPost" id="ncR-am-Bgq"/>
+                        <segue destination="t99-OJ-nML" kind="presentation" identifier="showMessage" id="iHM-Uy-hFV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="452" y="909"/>
+            <point key="canvasLocation" x="452" y="908.9955022488756"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="3do-EH-BCG">
+            <objects>
+                <viewController id="t99-OJ-nML" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A8n-m8-B7k"/>
+                        <viewControllerLayoutGuide type="bottom" id="wza-U6-thb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9ET-1m-AV5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LyD-5h-nIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1264" y="914"/>
         </scene>
         <!--Post View Controller-->
         <scene sceneID="gC1-hY-ofX">
@@ -516,6 +535,6 @@
         <image name="logo" width="152" height="218"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aCw-uc-xBT"/>
+        <segue reference="ncR-am-Bgq"/>
     </inferredMetricsTieBreakers>
 </document>
