@@ -8,15 +8,29 @@
 
 import Foundation
 
+//struct JSON: Codable {
+//    struct Data: Codable {
+//        struct Message: Codable {
+//            let message: String?
+//            let timestamp: String?
+//            let latitude: String?
+//            let longitude: String?
+//        }
+//        let messages: [Message]
+//    }
+//    let data = Data?
+//}
+
+
 struct Package:Encodable, Decodable{
-    let data: Data
+    let data: RequestData
 }
 
 struct PackageForPost:Encodable, Decodable{
     let data: DataForPost
 }
 
-struct Data:Encodable, Decodable{
+struct RequestData:Encodable, Decodable{
     let messages: [Message]
 }
 
@@ -25,13 +39,15 @@ struct DataForPost:Encodable, Decodable{
 }
 
 struct Message:Codable {
-    
-//    let uuid: Int
     let message: String
     let timestamp: String
     let latitude: String
     let longitude: String
-    
+}
+
+struct ErrorMessage:Codable {
+    let message: String?
+    let success: Bool?
 }
 
 struct MessageForPost:Codable {
@@ -43,7 +59,16 @@ struct MessageForPost:Codable {
 
 struct Response:Codable {
     let response: String
-    
+}
+
+struct User: Codable {
+    let username: String
+    let password: String
+}
+
+struct FailedResponse: Codable {
+    let success: Bool
+    let message: String
 }
 
 

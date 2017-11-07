@@ -37,6 +37,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         getData(latitude: latitude!, longitude: longitude!)
     }
     
+    @IBAction func listBtnAction(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
     
     // Get the current location of user
     // This function will be called everytime when our user changes their location

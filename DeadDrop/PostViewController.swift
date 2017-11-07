@@ -11,13 +11,15 @@ import MapKit
 
 class PostViewController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate {
     
+    var statusReply:String!
+    
     let manager = CLLocationManager() // This is for getting user's current location
     
     let uploadAlert = UIAlertController(title: "Uploading",
                                         message: "Please wait",
                                         preferredStyle: .alert)
     
-    var newDrop = Drop.init(lat: 0.0, long: 0.0, message: "")
+    var newDrop = Drop(lat: 0.0, long: 0.0, message: "")
     var latitude:CLLocationDegrees!
     var longitude:CLLocationDegrees!
     
@@ -36,10 +38,9 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     @IBAction func postButtonAction(_ sender: UIButton) {
         
         // this part generates the upload alet view
-
         self.present(uploadAlert, animated: true, completion:  nil)
 
-        guard let url = URL(string:"https://deaddrop.live/api/message") else {return}
+        guard let url = URL(string:"http://localhost:443/api/message") else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -67,21 +68,34 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         let session = URLSession.shared
         let task = session.dataTask(with: request){ (data,response,err) in
             
-            guard let response = response,let data = data else {return}
+            guard let response = response as? HTTPURLResponse,let data = data else {return}
+            print("DATA:",data)
             print("RESPONSE:",response)
+            print("STATUS CODE: ", response.statusCode)
+//            let parsedResult: AnyObject?
             do{
-//                print("NSDATA:",data as NSData)
-//                let sendPost = try JSONDecoder().decode(PackageForPost.self, from: data)
-//                let parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-//                print("PARSED RESULT:\(sendPost)")
-//                let responseStatus = try JSONDecoder().decode(Response.self, from: response)
+                switch (response.statusCode) {
+                case 200: return
+                default:
+                    let parsedResult = try JSONDecoder().decode(FailedResponse.self, from: data)
+                    print("PARSED RESULT:",parsedResult)
+                }
+//                let parsedResult = try JSONDecoder().decode(Message.self, from: data)
+//                parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
+//                print("PARSED_RESULT",parsedResult!)
 
-                
+
+
             }catch let err{
-
+//                parsedResult = "Parse error" as AnyObject
                 print("Session Error: ",err)
             }
+            
+
         }
+        
+      
+        
         performUIUpdatesOnMain {
             self.uploadAlert.dismiss(animated: true, completion: nil)
 

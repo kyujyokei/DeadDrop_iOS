@@ -33,7 +33,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     }
     
     
-
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let location = locations[0] // the most recent position
@@ -46,6 +45,13 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        manager.delegate = self as CLLocationManagerDelegate
+        manager.desiredAccuracy = kCLLocationAccuracyBest // get the most accurate data
+        manager.requestWhenInUseAuthorization() // request the location when user is using our app, not in backgroud
+        manager.startUpdatingLocation()
+    }
+    
+    func viewDidAppear() {
         
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
@@ -53,11 +59,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         
-        manager.delegate = self as CLLocationManagerDelegate
-        manager.desiredAccuracy = kCLLocationAccuracyBest // get the most accurate data
-        manager.requestWhenInUseAuthorization() // request the location when user is using our app, not in backgroud
-        manager.startUpdatingLocation()
-        self.tableView.reloadData()
+        
+        //self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -135,6 +138,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, err) in
             guard let data = data, let response = response else { return }
+            
             do {
                 let package = try JSONDecoder().decode(Package.self, from: data)
 
