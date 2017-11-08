@@ -12,7 +12,6 @@
 		C921349C1FA5A905002FEB72 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C921349B1FA5A905002FEB72 /* SignupViewController.swift */; };
 		C945FC8E1F96D77400D7CF3E /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = C945FC8D1F96D77300D7CF3E /* test.json */; };
 		C949CF8A1F92E02100EA48DC /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949CF891F92E02100EA48DC /* GCDBlackBox.swift */; };
-		C94B22361F994BCE001E0B3C /* getData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94B22351F994BCE001E0B3C /* getData.swift */; };
 		C97BBD751F81071A0060F518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BBD741F81071A0060F518 /* AppDelegate.swift */; };
 		C97BBD771F81071A0060F518 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BBD761F81071A0060F518 /* MapViewController.swift */; };
 		C97BBD7A1F81071A0060F518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C97BBD781F81071A0060F518 /* Main.storyboard */; };
@@ -51,7 +50,6 @@
 		C921349B1FA5A905002FEB72 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		C945FC8D1F96D77300D7CF3E /* test.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		C949CF891F92E02100EA48DC /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
-		C94B22351F994BCE001E0B3C /* getData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getData.swift; sourceTree = "<group>"; };
 		C97BBD711F81071A0060F518 /* DeadDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeadDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97BBD741F81071A0060F518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C97BBD761F81071A0060F518 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				C921349B1FA5A905002FEB72 /* SignupViewController.swift */,
 				C99B52E91FA3FAE2005E7E75 /* MainViewController.swift */,
 				C99B52E71FA301BB005E7E75 /* MainTableViewCell.swift */,
-				C94B22351F994BCE001E0B3C /* getData.swift */,
 				C98C93971F82FE5700AA5609 /* PostViewController.swift */,
 				C97BBD761F81071A0060F518 /* MapViewController.swift */,
 				C97BBD781F81071A0060F518 /* Main.storyboard */,
@@ -313,7 +310,6 @@
 				C99B52E81FA301BB005E7E75 /* MainTableViewCell.swift in Sources */,
 				C921349C1FA5A905002FEB72 /* SignupViewController.swift in Sources */,
 				C97BBD771F81071A0060F518 /* MapViewController.swift in Sources */,
-				C94B22361F994BCE001E0B3C /* getData.swift in Sources */,
 				C98C939A1F83030000AA5609 /* DropManager.swift in Sources */,
 				C97BBD751F81071A0060F518 /* AppDelegate.swift in Sources */,
 				C949CF8A1F92E02100EA48DC /* GCDBlackBox.swift in Sources */,

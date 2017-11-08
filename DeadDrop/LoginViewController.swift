@@ -10,6 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var errorTextField: UILabel!
     
     @IBOutlet weak var usernameTextField: UITextField!
     
@@ -20,6 +21,67 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signupBtn: UIButton!
     
     @IBAction func loginBtnAction(_ sender: UIButton) {
+        if ( usernameTextField.text != "" && passwordTextField.text != ""){
+            guard let url = URL(string:"https://deaddrop.live/user/login") else {return}
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            print("CREATE ACCOUNT POST SENT")
+            
+            let newPackage = User(username: usernameTextField.text!, password: passwordTextField.text!)
+            
+            do {
+                let jsonBody = try JSONEncoder().encode(newPackage)
+                request.httpBody = jsonBody
+                print("jsonBody:",jsonBody)
+                let jsonBodyString = String(data: jsonBody, encoding: .utf8)
+                print("JSON String : ", jsonBodyString!)
+            } catch let err  {
+                print("jsonBody Error: ",err)
+            }
+            
+            let session = URLSession.shared
+            let task = session.dataTask(with: request){ (data,response,err) in
+                
+                guard let response = response as? HTTPURLResponse,let data = data else {return}
+                print("RESPONSE:",response)
+                do{
+                    switch (response.statusCode) {
+                    case 200:
+                        let parsedResult = try JSONDecoder().decode(TokenResponse.self, from: data)
+                        print("SUCCESS:\(parsedResult.success), MESSAGE:\(parsedResult.message ?? "OK")")
+                        UserDefaults.standard.set(parsedResult.token, forKey: "token")
+                        print("TOKEN:",UserDefaults.standard.object(forKey: "token"))
+                        if parsedResult.success == false {
+                            performUIUpdatesOnMain {
+                                self.errorTextField.isHidden = false
+                                self.errorTextField.text = parsedResult.message
+                                self.errorTextField.textColor = UIColor.red
+                            }
+                        } else {
+                            performUIUpdatesOnMain {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                    self.performSegue(withIdentifier: "showTable", sender: nil)
+                                }
+                            }
+                            
+                        }
+                    default:
+                        let parsedResult = try JSONDecoder().decode(SuccessResponse.self, from: data)
+                        print("PARSED RESULT:",parsedResult)
+                    }
+                    
+                }catch let err{
+                    
+                    print("Session Error: ",err)
+                }
+                
+            }
+            
+            
+            task.resume()
+        }
+        
     }
     
     

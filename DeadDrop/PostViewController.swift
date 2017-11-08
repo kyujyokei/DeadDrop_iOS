@@ -40,10 +40,11 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         // this part generates the upload alet view
         self.present(uploadAlert, animated: true, completion:  nil)
 
-        guard let url = URL(string:"http://localhost:443/api/message") else {return}
+        guard let url = URL(string:"https://deaddrop.live/api/message") else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(UserDefaults.standard.object(forKey: "token") as! String,  forHTTPHeaderField: "x-auth" )
         print("POSTED")
         
         let date : Date = Date()
@@ -77,13 +78,9 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
                 switch (response.statusCode) {
                 case 200: return
                 default:
-                    let parsedResult = try JSONDecoder().decode(FailedResponse.self, from: data)
+                    let parsedResult = try JSONDecoder().decode(SuccessResponse.self, from: data)
                     print("PARSED RESULT:",parsedResult)
                 }
-//                let parsedResult = try JSONDecoder().decode(Message.self, from: data)
-//                parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
-//                print("PARSED_RESULT",parsedResult!)
-
 
 
             }catch let err{

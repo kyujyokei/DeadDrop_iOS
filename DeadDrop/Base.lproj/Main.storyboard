@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dR8-Z4-vnq">
-                                <rect key="frame" x="27.5" y="131" width="320" height="360"/>
+                                <rect key="frame" x="28" y="131" width="320" height="360"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter user name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wdh-2G-Ova">
                                         <rect key="frame" x="35" y="41" width="250" height="30"/>
@@ -82,16 +82,26 @@
                                     <constraint firstItem="oeV-mp-UUs" firstAttribute="top" secondItem="wdh-2G-Ova" secondAttribute="bottom" constant="32" id="zp6-Cw-XDz"/>
                                 </constraints>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DmV-F4-nfm">
+                                <rect key="frame" x="62.5" y="144" width="250" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.27480201198630139" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wdh-2G-Ova" firstAttribute="top" secondItem="DmV-F4-nfm" secondAttribute="bottom" constant="7" id="Bli-Rw-Rg2"/>
                             <constraint firstItem="dR8-Z4-vnq" firstAttribute="top" secondItem="qYn-H2-ujH" secondAttribute="bottom" constant="111" id="F2s-kx-4np"/>
+                            <constraint firstItem="DmV-F4-nfm" firstAttribute="centerX" secondItem="dR8-Z4-vnq" secondAttribute="centerX" id="JTW-R3-I78"/>
                             <constraint firstItem="dR8-Z4-vnq" firstAttribute="centerX" secondItem="LLY-0I-OY3" secondAttribute="centerX" id="Pkw-cz-EDF"/>
+                            <constraint firstItem="DmV-F4-nfm" firstAttribute="width" secondItem="wdh-2G-Ova" secondAttribute="width" id="dCH-Jw-v1Z"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="cancelBtn" destination="7pi-ji-zwE" id="fgt-CE-d3D"/>
                         <outlet property="confirmPwdTextField" destination="VX6-od-HJ3" id="r4b-4S-1EV"/>
+                        <outlet property="errorTextField" destination="DmV-F4-nfm" id="94Z-b7-xOj"/>
                         <outlet property="pwdTextField" destination="oeV-mp-UUs" id="fbi-6i-cca"/>
                         <outlet property="signupBtn" destination="sSR-wB-tfm" id="biY-rh-L3R"/>
                         <outlet property="usernameTextField" destination="wdh-2G-Ova" id="Vtx-OD-icb"/>
@@ -99,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tCc-IB-u5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-930" y="913"/>
+            <point key="canvasLocation" x="-930.39999999999998" y="912.5937031484259"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -476,7 +486,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginBtnAction:" destination="gxt-al-WMW" eventType="touchUpInside" id="oXB-UX-2J4"/>
-                                    <segue destination="RcD-5M-N8o" kind="show" id="3av-uf-4wd"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UAB-4V-sFC">
@@ -516,6 +525,12 @@
                                     <segue destination="dZO-9H-sxv" kind="presentation" id="Cd4-r5-LxP"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7R-0h-tY6">
+                                <rect key="frame" x="67" y="307" width="240" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.58637152780000001" blue="0.065945095489999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.21958237886428833" green="0.19193896651268005" blue="0.34948539733886719" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -525,8 +540,11 @@
                             <constraint firstItem="h6h-tz-1PK" firstAttribute="centerX" secondItem="v0w-Zi-5iD" secondAttribute="centerX" id="G8M-tW-mGd"/>
                             <constraint firstItem="JsV-wZ-WDX" firstAttribute="centerX" secondItem="v0w-Zi-5iD" secondAttribute="centerX" id="II6-Z7-K6x"/>
                             <constraint firstItem="UAB-4V-sFC" firstAttribute="centerX" secondItem="v0w-Zi-5iD" secondAttribute="centerX" id="IPg-0h-e1R"/>
+                            <constraint firstItem="H7R-0h-tY6" firstAttribute="centerX" secondItem="v0w-Zi-5iD" secondAttribute="centerX" id="RmO-jy-KzV"/>
+                            <constraint firstItem="H7R-0h-tY6" firstAttribute="width" secondItem="JsV-wZ-WDX" secondAttribute="width" id="UP9-G5-U7E"/>
                             <constraint firstItem="JsV-wZ-WDX" firstAttribute="top" secondItem="pZy-Zv-Oup" secondAttribute="bottom" constant="42" id="Weg-mF-hEY"/>
                             <constraint firstItem="LVh-Kx-EUV" firstAttribute="centerX" secondItem="v0w-Zi-5iD" secondAttribute="centerX" id="XVA-dQ-iIw"/>
+                            <constraint firstItem="JsV-wZ-WDX" firstAttribute="top" secondItem="H7R-0h-tY6" secondAttribute="bottom" constant="8" id="eT3-bE-s1V"/>
                             <constraint firstItem="pZy-Zv-Oup" firstAttribute="centerX" secondItem="v0w-Zi-5iD" secondAttribute="centerX" id="g1k-Ip-kcv"/>
                             <constraint firstItem="tzB-0N-bG7" firstAttribute="top" secondItem="twQ-fZ-WRd" secondAttribute="bottom" constant="28" id="gEp-RU-0eO"/>
                             <constraint firstItem="pZy-Zv-Oup" firstAttribute="top" secondItem="DGP-ec-YDw" secondAttribute="bottom" constant="55" id="ga8-MT-MeK"/>
@@ -540,10 +558,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="errorTextField" destination="H7R-0h-tY6" id="Zne-kD-fOu"/>
                         <outlet property="loginBtn" destination="tzB-0N-bG7" id="BqA-CU-Lxj"/>
                         <outlet property="passwordTextField" destination="twQ-fZ-WRd" id="p7p-oz-EKh"/>
                         <outlet property="signupBtn" destination="LVh-Kx-EUV" id="4qy-aW-5JS"/>
                         <outlet property="usernameTextField" destination="JsV-wZ-WDX" id="lHw-6P-UTf"/>
+                        <segue destination="RcD-5M-N8o" kind="show" identifier="showTable" id="ODt-Ja-e5z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7aT-ii-c77" userLabel="First Responder" sceneMemberID="firstResponder"/>

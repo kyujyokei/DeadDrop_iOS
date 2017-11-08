@@ -66,9 +66,17 @@ struct User: Codable {
     let password: String
 }
 
-struct FailedResponse: Codable {
+struct SuccessResponse: Codable {
     let success: Bool
-    let message: String
+    let message: String?
 }
+
+struct TokenResponse: Codable {
+    let success: Bool
+    let token: String
+    let message: String?
+}
+
+
 
 
