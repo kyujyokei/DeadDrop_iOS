@@ -73,7 +73,7 @@ struct SuccessResponse: Codable {
 
 struct TokenResponse: Codable {
     let success: Bool
-    let token: String
+    let token: String?
     let message: String?
 }
 

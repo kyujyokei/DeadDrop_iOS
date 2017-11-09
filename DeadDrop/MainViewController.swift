@@ -27,8 +27,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     
     @IBAction func refreshBtnAction(_ sender: UIButton) {
         
-        getData(latitude: latitude!, longitude: longitude!)
-        tableView.reloadData()
+//        self.performSegue(withIdentifier: "setRange", sender: nil)
         
     }
     
@@ -129,7 +128,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     func getData(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
         
         print("get")
-        guard let url = URL(string: "https://deaddrop.live/api/message?latitude=\(latitude)&longitude=\(longitude)&range=100") else { return }
+        guard let url = URL(string: "https://deaddrop.live/api/message?latitude=\(latitude)&longitude=\(longitude)&range=\(UserDefaults.standard.integer(forKey: "range"))") else { return }
         
         print(url)
         

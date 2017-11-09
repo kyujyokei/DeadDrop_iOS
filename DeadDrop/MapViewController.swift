@@ -166,7 +166,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func getData(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
         
         print("get")
-        guard let url = URL(string: "https://deaddrop.live/api/message?latitude=\(latitude)&longitude=\(longitude)&range=100") else { return }
+        guard let url = URL(string: "https://deaddrop.live/api/message?latitude=\(latitude)&longitude=\(longitude)&range=10") else { return }
         
         print(url)
         

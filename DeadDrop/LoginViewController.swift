@@ -56,7 +56,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             performUIUpdatesOnMain {
                                 self.errorTextField.isHidden = false
                                 self.errorTextField.text = parsedResult.message
-                                self.errorTextField.textColor = UIColor.red
                             }
                         } else {
                             performUIUpdatesOnMain {

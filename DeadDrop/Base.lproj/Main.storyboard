@@ -33,19 +33,19 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="username"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oeV-mp-UUs">
                                         <rect key="frame" x="35" y="103" width="250" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="re-enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VX6-od-HJ3">
                                         <rect key="frame" x="35" y="165" width="250" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSR-wB-tfm">
                                         <rect key="frame" x="35" y="227" width="250" height="30"/>
@@ -307,10 +307,73 @@
             </objects>
             <point key="canvasLocation" x="1332" y="136"/>
         </scene>
+        <!--Range Slide Bar View Controller-->
+        <scene sceneID="Qo4-GJ-OGz">
+            <objects>
+                <viewController modalPresentationStyle="overCurrentContext" id="jax-ve-Iz1" customClass="RangeSlideBarViewController" customModule="DeadDrop" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="H8E-za-JXZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="eSv-2k-hfY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="egU-cB-VIU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4W-mc-IYX">
+                                <rect key="frame" x="16" y="194" width="343" height="128"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="7ek-r5-R1k">
+                                        <rect key="frame" x="28" y="50" width="287" height="31"/>
+                                        <connections>
+                                            <action selector="sliderAction:" destination="jax-ve-Iz1" eventType="valueChanged" id="g4g-pC-TcB"/>
+                                        </connections>
+                                    </slider>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqY-kw-qYY">
+                                        <rect key="frame" x="151" y="88" width="40" height="30"/>
+                                        <state key="normal" title="Apply"/>
+                                        <connections>
+                                            <action selector="applyBtnAction:" destination="jax-ve-Iz1" eventType="touchUpInside" id="Q2k-Qy-K0i"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="6vS-XT-tMl"/>
+                                    <constraint firstAttribute="height" constant="128" id="Qap-wr-aJr"/>
+                                    <constraint firstItem="WqY-kw-qYY" firstAttribute="centerX" secondItem="k4W-mc-IYX" secondAttribute="centerX" id="RdG-Z4-3sL"/>
+                                    <constraint firstItem="7ek-r5-R1k" firstAttribute="top" secondItem="k4W-mc-IYX" secondAttribute="top" constant="50" id="jDm-do-kun"/>
+                                    <constraint firstItem="WqY-kw-qYY" firstAttribute="top" secondItem="7ek-r5-R1k" secondAttribute="bottom" constant="8" id="kjD-3B-tPY"/>
+                                    <constraint firstItem="7ek-r5-R1k" firstAttribute="centerX" secondItem="k4W-mc-IYX" secondAttribute="centerX" id="qq1-Z7-LzR"/>
+                                    <constraint firstItem="7ek-r5-R1k" firstAttribute="leading" secondItem="k4W-mc-IYX" secondAttribute="leading" constant="30" id="v5m-ng-tHr"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCv-xB-dwz">
+                                <rect key="frame" x="178" y="211" width="18" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.36221104452054792" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="k4W-mc-IYX" firstAttribute="top" secondItem="fCv-xB-dwz" secondAttribute="bottom" constant="-38" id="7i7-Ve-DYq"/>
+                            <constraint firstItem="k4W-mc-IYX" firstAttribute="top" secondItem="H8E-za-JXZ" secondAttribute="bottom" constant="174" id="SWf-yB-nA7"/>
+                            <constraint firstItem="fCv-xB-dwz" firstAttribute="centerX" secondItem="egU-cB-VIU" secondAttribute="centerX" id="Ved-5e-l7n"/>
+                            <constraint firstItem="k4W-mc-IYX" firstAttribute="centerX" secondItem="egU-cB-VIU" secondAttribute="centerX" id="zT4-si-S5T"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="rangeLabel" destination="fCv-xB-dwz" id="P9c-YO-fWU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nzv-Fl-gPU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="452" y="-530.28485757121439"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="Z1a-eI-nXW">
             <objects>
-                <viewController storyboardIdentifier="InitialViewController" id="RcD-5M-N8o" customClass="MainViewController" customModule="DeadDrop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InitialViewController" modalTransitionStyle="crossDissolve" id="RcD-5M-N8o" customClass="MainViewController" customModule="DeadDrop" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="umA-oW-gcf"/>
                         <viewControllerLayoutGuide type="bottom" id="vXD-Ac-GkN"/>
@@ -390,16 +453,17 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="m15-jq-r3t"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" animates="NO" id="m15-jq-r3t"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AFT-GY-xsI">
-                                        <rect key="frame" x="8" y="18" width="53" height="30"/>
-                                        <state key="normal" title="Refresh">
+                                        <rect key="frame" x="8" y="18" width="44" height="30"/>
+                                        <state key="normal" title="Range">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="refreshBtnAction:" destination="RcD-5M-N8o" eventType="touchUpInside" id="9wF-gL-JMU"/>
+                                            <segue destination="jax-ve-Iz1" kind="presentation" id="jPf-zG-jtv"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -575,6 +639,6 @@
         <image name="logo" width="152" height="218"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ncR-am-Bgq"/>
+        <segue reference="aCw-uc-xBT"/>
     </inferredMetricsTieBreakers>
 </document>
