@@ -71,24 +71,22 @@ class DeadDropTests: XCTestCase {
         XCTAssertEqual(DropManager.drops.count, 2)
     }
     
-//    func testCellForRowAt(){
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "InitialViewController") as! UITableViewController
-//        XCTAssertNotNil(vc.view, "Problems initializing view")
-//        let cell = vc.tableView(vc.tableView, cellForRowAt:IndexPath(row:0,section:0))
-//        XCTAssertEqual(cell.textLabel?.text, "Hi")
-//    }
+    func testCellForRowAt(){
+        DropManager.init()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "InitialViewController") as! MainViewController
+        XCTAssertNotNil(vc.view, "Problems initializing view")
+        let cell = vc.tableView(vc.tableView, cellForRowAt:IndexPath(row:0,section:0)) as! MainTableViewCell
+        XCTAssertEqual(cell.textLabel?.text, nil)
+    }
     
-//    func testGetData(){
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "InitialViewController") as! UITableViewController
+    func testGetData(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "InitialViewController") as! MainViewController
 //        getData(latitude: 1.1, longitude: 2.2)
-//    
-//        XCTAssertEqual(DropManager.drops.count, 3)
-//        
-//        
-//        
-//    }
+    
+        XCTAssertEqual(DropManager.drops.count, 3)
+    }
     
     
     
