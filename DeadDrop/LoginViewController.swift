@@ -53,12 +53,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         UserDefaults.standard.set(parsedResult.token, forKey: "token")
                         print("TOKEN:",UserDefaults.standard.object(forKey: "token"))
                         if parsedResult.success == false {
+                            // if login fails
                             performUIUpdatesOnMain {
                                 self.errorTextField.isHidden = false
                                 self.errorTextField.text = parsedResult.message
                             }
                         } else {
+                            // if login succeed
                             performUIUpdatesOnMain {
+                                UserDefaults.standard.set(true, forKey: "isLoggedIn")
+
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                                     self.performSegue(withIdentifier: "showTable", sender: nil)
                                 }
