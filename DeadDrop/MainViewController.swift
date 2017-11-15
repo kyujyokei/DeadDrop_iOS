@@ -25,10 +25,20 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
+    let blackView = UIView()
+    let settingsLuancher = SettingsLauncher()
+    
     @IBAction func refreshBtnAction(_ sender: UIButton) {
         
-//        self.performSegue(withIdentifier: "setRange", sender: nil)
+        settingsLuancher.showSettings()
         
+    }
+    
+    func handleDismiss(){
+        UIView.animate(withDuration: 0.2, animations: {
+            self.blackView.alpha = 0
+            // dismisses blackView
+        })
     }
     
     

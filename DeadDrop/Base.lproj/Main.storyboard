@@ -458,13 +458,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AFT-GY-xsI">
-                                        <rect key="frame" x="8" y="18" width="44" height="30"/>
-                                        <state key="normal" title="Range">
+                                        <rect key="frame" x="8" y="18" width="57" height="30"/>
+                                        <state key="normal" title="Settings">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="refreshBtnAction:" destination="RcD-5M-N8o" eventType="touchUpInside" id="9wF-gL-JMU"/>
-                                            <segue destination="jax-ve-Iz1" kind="presentation" id="jPf-zG-jtv"/>
                                         </connections>
                                     </button>
                                 </subviews>
