@@ -46,7 +46,7 @@ class DeadDropTests: XCTestCase {
     
     func testAddDrop(){
         
-        let testDrop = Drop.init(lat: 23.22222, long: 33.22222, message: "Hello")
+        let testDrop = Drop.init(lat: 23.02, long: 33.22222, message: "Hello")
         
         DropManager.add(drop: testDrop)
         

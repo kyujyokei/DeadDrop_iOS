@@ -20,6 +20,8 @@
 		C97BBD8A1F81071A0060F518 /* DeadDropTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BBD891F81071A0060F518 /* DeadDropTests.swift */; };
 		C97BBD951F81071A0060F518 /* DeadDropUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BBD941F81071A0060F518 /* DeadDropUITests.swift */; };
 		C97D4E521FBC02270097FEBC /* SettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97D4E511FBC02270097FEBC /* SettingsLauncher.swift */; };
+		C97D4E541FBCFEDA0097FEBC /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97D4E531FBCFEDA0097FEBC /* SettingCell.swift */; };
+		C97D4E561FBD02510097FEBC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97D4E551FBD02510097FEBC /* Extensions.swift */; };
 		C98C93981F82FE5700AA5609 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98C93971F82FE5700AA5609 /* PostViewController.swift */; };
 		C98C939A1F83030000AA5609 /* DropManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98C93991F83030000AA5609 /* DropManager.swift */; };
 		C99B52E81FA301BB005E7E75 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99B52E71FA301BB005E7E75 /* MainTableViewCell.swift */; };
@@ -66,6 +68,8 @@
 		C97BBD941F81071A0060F518 /* DeadDropUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadDropUITests.swift; sourceTree = "<group>"; };
 		C97BBD961F81071A0060F518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C97D4E511FBC02270097FEBC /* SettingsLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLauncher.swift; sourceTree = "<group>"; };
+		C97D4E531FBCFEDA0097FEBC /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		C97D4E551FBD02510097FEBC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C98C93971F82FE5700AA5609 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		C98C93991F83030000AA5609 /* DropManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropManager.swift; sourceTree = "<group>"; };
 		C99B52E71FA301BB005E7E75 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
@@ -130,10 +134,12 @@
 				C921349B1FA5A905002FEB72 /* SignupViewController.swift */,
 				C99B52E91FA3FAE2005E7E75 /* MainViewController.swift */,
 				C97D4E511FBC02270097FEBC /* SettingsLauncher.swift */,
+				C97D4E531FBCFEDA0097FEBC /* SettingCell.swift */,
 				C99B52E71FA301BB005E7E75 /* MainTableViewCell.swift */,
 				C9A722331FB422010014E7D1 /* RangeSlideBarViewController.swift */,
 				C98C93971F82FE5700AA5609 /* PostViewController.swift */,
 				C97BBD761F81071A0060F518 /* MapViewController.swift */,
+				C97D4E551FBD02510097FEBC /* Extensions.swift */,
 				C97BBD781F81071A0060F518 /* Main.storyboard */,
 				C97BBD7B1F81071A0060F518 /* Assets.xcassets */,
 				C97BBD7D1F81071A0060F518 /* LaunchScreen.storyboard */,
@@ -319,11 +325,13 @@
 				C98C939A1F83030000AA5609 /* DropManager.swift in Sources */,
 				C97BBD751F81071A0060F518 /* AppDelegate.swift in Sources */,
 				C949CF8A1F92E02100EA48DC /* GCDBlackBox.swift in Sources */,
+				C97D4E541FBCFEDA0097FEBC /* SettingCell.swift in Sources */,
 				C909C5C91F95BFB8005A758D /* Post.swift in Sources */,
 				C97D4E521FBC02270097FEBC /* SettingsLauncher.swift in Sources */,
 				C921349A1FA5836A002FEB72 /* LoginViewController.swift in Sources */,
 				C9A722341FB422010014E7D1 /* RangeSlideBarViewController.swift in Sources */,
 				C99B52EA1FA3FAE2005E7E75 /* MainViewController.swift in Sources */,
+				C97D4E561FBD02510097FEBC /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
