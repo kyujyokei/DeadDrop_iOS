@@ -31,7 +31,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     @IBAction func refreshBtnAction(_ sender: UIButton) {
         
         settingsLuancher.showSettings()
-        
+//        performSegue(withIdentifier: "return", sender: nil)
     }
     
     func handleDismiss(){

@@ -10,6 +10,14 @@ import Foundation
 import UIKit
 
 class BaseCell: UICollectionViewCell {
+    
+    override var isHighlighted: Bool {
+        didSet{
+            backgroundColor = isHighlighted ? UIColor.darkGray : UIColor.white
+//            print(isHighlighted)
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -25,9 +33,21 @@ class BaseCell: UICollectionViewCell {
 
 class SettingsCell: BaseCell {
     
+    var setting:Setting? {
+        didSet{
+            nameLabel.text = setting?.name
+            
+            if let imageName = setting?.name{
+                iconImageView.image = UIImage(named: (imageName))
+            }
+
+        }
+    }
+    
     let nameLabel:UILabel = {
         let label = UILabel()
         label.text = "Setting"
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     
