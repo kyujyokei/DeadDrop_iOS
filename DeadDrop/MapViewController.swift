@@ -20,6 +20,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBOutlet weak var mapView: MKMapView!
 
+    
+    @IBOutlet weak var messageView: UIView!
+    @IBOutlet weak var messageLabel: UILabel!
+    
     @IBOutlet weak var postButton: UIButton!
     
     @IBOutlet weak var locationLabel: UILabel! // This is the location label for testing
@@ -70,6 +74,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTestAnnotation() //sets the testing annotation
+        mapView.delegate = self
     
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest // get the most accurate data
@@ -82,11 +87,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewDidAppear(_ animated: Bool) {
         //print(message)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     
@@ -117,6 +117,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        mapView.deselectAnnotation(view.annotation, animated: true)
+        
+        print("PINNNNNN")
+        let message = view.annotation?.title
+        if let messageText = message {
+            messageLabel.text = messageText
+        } else {
+            messageLabel.text = nil
+        }
+    }
     
 //    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 //

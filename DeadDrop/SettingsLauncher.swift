@@ -98,6 +98,20 @@ class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataS
         return 0
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let setting = settings[indexPath.item]
+        print(setting.name)
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            self.handleDismiss()
+        }) { (completed: Bool) in
+            
+        }
+        
+        
+        
+    }
+    
     override init() {
         super.init()
         

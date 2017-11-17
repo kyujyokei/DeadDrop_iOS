@@ -76,7 +76,18 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
 //            let parsedResult: AnyObject?
             do{
                 switch (response.statusCode) {
-                case 200: return
+                case 200:
+                    let parsedResult = try JSONDecoder().decode(SuccessResponse.self, from: data)
+                    print("SUCCESS:\(parsedResult.success), MESSAGE:\(String(describing: parsedResult.message))")
+                    if (parsedResult.success == true){
+                        print("ALERT VIEW")
+                        // TODO: THIS PART DOESN"T WORK
+                        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                        
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    return
                 default:
                     let parsedResult = try JSONDecoder().decode(SuccessResponse.self, from: data)
                     print("PARSED RESULT:",parsedResult)
