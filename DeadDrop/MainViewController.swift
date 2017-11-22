@@ -14,6 +14,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     let manager = CLLocationManager() // This is for getting user's current location
     var latitude:CLLocationDegrees?
     var longitude:CLLocationDegrees?
+    var currLocation:CLLocation?
     
     let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -30,8 +31,15 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     
     @IBAction func refreshBtnAction(_ sender: UIButton) {
         
-        settingsLuancher.showSettings()
-//        performSegue(withIdentifier: "return", sender: nil)
+//        settingsLuancher.showSettings()
+        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "RangeSlideBar") as! RangeSlideBarViewController
+//        print("A")
+//        navigationController?.pushViewController(vc, animated: true)
+//        print("B")
+
+        performSegue(withIdentifier: "toRange", sender: self)
     }
     
     func handleDismiss(){
@@ -48,6 +56,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
         latitude = location.coordinate.latitude
         longitude = location.coordinate.longitude
+        
+        currLocation = CLLocation(latitude: latitude!, longitude: longitude!)
         
         // refreshes everytime user moves to a new location
         getData(latitude: latitude!, longitude: longitude!)
@@ -127,12 +137,37 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         cell.messageLabel.lineBreakMode = .byWordWrapping
         cell.messageLabel.numberOfLines = 0
         
-        cell.timeLabel.text = "5 mins ago"
-        cell.distanceLabel.text = "200m"
+        cell.timeLabel.text = i.date
+//        let convertTest = convertStringToDate(dateString: i.date!)
+//        print("CONVERT RESULT:\(String(describing: convertTest))")
+        
+        let messageLocation = CLLocation(latitude: i.latitude, longitude: i.longtitude)
+//        print("i LAT:\(i.latitude), i LONG:\(i.longtitude)")
+//        print("\(latitude), \(longitude)")
+        let distance = currLocation?.distance(from: messageLocation)
         
         cell.messageLabel.text = "\(String(describing: i.message!))"
+//        let messageDate = convertStringToDate(dateString: i.message)
+        
+        if distance! < 1.0{
+            cell.distanceLabel.text = "Near here"
+        } else {
+            cell.distanceLabel.text = "\(Int(distance!))m"
+        }
         
         return cell
+    }
+    
+    public func convertStringToDate (dateString:String) -> Date {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        print("DATE STRING\(dateString)")
+        
+        let date:Date = dateFormatter.date(from: dateString)!
+        return date
+        
     }
     
     public func getData(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
@@ -156,7 +191,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
                 DropManager.clearAll() // clean Drops to prevent multiple loads
                 
                 for i in messages {
-                    let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message)
+                    let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message, date: i.timestamp)
                     DropManager.add(drop: new)
                 }
 

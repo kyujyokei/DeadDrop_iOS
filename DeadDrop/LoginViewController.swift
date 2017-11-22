@@ -95,8 +95,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.isNavigationBarHidden = true
+        
         usernameTextField.delegate = self
         passwordTextField.delegate = self
+        
+        //for testing
+        usernameTextField.text = "bubui"
+        passwordTextField.text = "bu"
         
 
         let background = UIImage(named: "bg.png")
@@ -122,6 +128,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {

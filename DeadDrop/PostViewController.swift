@@ -19,7 +19,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
                                         message: "Please wait",
                                         preferredStyle: .alert)
     
-    var newDrop = Drop(lat: 0.0, long: 0.0, message: "")
+    var newDrop = Drop(lat: 0.0, long: 0.0, message: "", date: "")
     var latitude:CLLocationDegrees!
     var longitude:CLLocationDegrees!
     

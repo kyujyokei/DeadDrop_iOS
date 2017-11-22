@@ -31,8 +31,8 @@ class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataS
     let cellHeight:CGFloat = 50
     
     let settings: [Setting] = {
-        return [Setting(name: "Your Account", imageName: "icon-29"),
-                Setting(name: "Settings", imageName: "icon-20"),
+        return [Setting(name: "My Account", imageName: "icon-29"),
+                Setting(name: "Range Settings", imageName: "icon-20"),
                 Setting(name: "Logout", imageName: "icon-29"),
                 Setting(name: "Cancel", imageName: "icon-40")]
     }()
@@ -98,9 +98,22 @@ class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataS
         return 0
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let setting = settings[indexPath.item]
-        print(setting.name)
+//        let setting = settings[indexPath.item]
+//        print(setting.name)
+        switch indexPath.row {
+            case 0:
+                print("A")
+            case 1:
+                print("B")
+            case 2:
+                print("C")
+            case 3:
+                print("D")
+            default:
+                print("E")
+        }
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.handleDismiss()

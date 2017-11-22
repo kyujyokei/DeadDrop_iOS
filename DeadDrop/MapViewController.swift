@@ -19,9 +19,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var currentLocation:CLLocation?
     
     @IBOutlet weak var mapView: MKMapView!
-
     
     @IBOutlet weak var messageView: UIView!
+    
+    @IBOutlet weak var messageVBottom: NSLayoutConstraint!
+    
+
+    @IBOutlet weak var usernameLabel: UILabel!
+    
     @IBOutlet weak var messageLabel: UILabel!
     
     @IBOutlet weak var postButton: UIButton!
@@ -29,9 +34,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var locationLabel: UILabel! // This is the location label for testing
     
     
+    @IBAction func closeWinBtnAct(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.messageVBottom.constant = -200
+        }, completion: nil)
+    }
     
     
-    var message:String = "Test of viewDidAppear"
+  
     
     @IBAction func postButtonAction(_ sender: UIButton) {
         performSegue(withIdentifier: "toPost", sender: self)
@@ -81,6 +91,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         manager.requestWhenInUseAuthorization() // request the location when user is using our app, not in backgroud
         manager.startUpdatingLocation()
         
+        messageVBottom.constant = -200
+        
+        postButton.layer.cornerRadius = 0.5 * postButton.bounds.size.width
+        postButton.clipsToBounds = true
+        
     }
     
     
@@ -117,14 +132,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     
-    
+    // When you select an annotation
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         mapView.deselectAnnotation(view.annotation, animated: true)
         
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.messageVBottom.constant = 0
+        }, completion: nil)
+        
         print("PINNNNNN")
-        let message = view.annotation?.title
-        if let messageText = message {
-            messageLabel.text = messageText
+        let username = view.annotation?.title
+        let message = view.annotation?.subtitle
+        if let userText = username {
+            usernameLabel.text = userText
+            messageLabel.text = message!
         } else {
             messageLabel.text = nil
         }
@@ -195,7 +216,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 DropManager.clearAll() // clean Drops to prevent multiple loads
                 
                 for i in messages {
-                    let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message)
+                    let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message, date: i.timestamp)
                     DropManager.add(drop: new)
                     let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake( new.latitude , new.longtitude )
                     let annotation = MKPointAnnotation()
