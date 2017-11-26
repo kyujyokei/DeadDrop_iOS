@@ -17,11 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UserDefaults.standard.register(defaults: ["range":10])
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
-        if isLoggedIn == true {
-            let mainStoryBoard = UIStoryboard(name:"Main", bundle: nil)
-            let targetViewController = mainStoryBoard.instantiateViewController(withIdentifier: "InitialViewController")
-            self.window?.rootViewController = targetViewController
-        }
+//        let tokenFetchDate = UserDefaults.standard.data(forKey: "tokenFetchDate")
+        UserDefaults.standard.register(defaults: ["tokenFetchDate":""])
+//        if isLoggedIn == true {
+//            let mainStoryBoard = UIStoryboard(name:"Main", bundle: nil)
+//            let targetViewController = mainStoryBoard.instantiateViewController(withIdentifier: "InitialViewController")
+//            self.window?.rootViewController = targetViewController
+//        }
         
         return true
     }

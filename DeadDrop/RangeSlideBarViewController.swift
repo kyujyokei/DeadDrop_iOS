@@ -18,6 +18,10 @@ class RangeSlideBarViewController: UIViewController {
     }
     
     
+    @IBAction func deleteAccountBtnAct(_ sender: UIButton) {
+    }
+    
+    
     
     @IBAction func applyBtnAction(_ sender: UIButton) {
         UserDefaults.standard.set(Int(rangeLabel.text!), forKey: "range")

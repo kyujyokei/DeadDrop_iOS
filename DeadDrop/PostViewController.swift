@@ -19,7 +19,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
                                         message: "Please wait",
                                         preferredStyle: .alert)
     
-    var newDrop = Drop(lat: 0.0, long: 0.0, message: "", date: "")
+    var newDrop = Drop(lat: 0.0, long: 0.0, message: "", date: "",userName: "", userId: 0 )
     var latitude:CLLocationDegrees!
     var longitude:CLLocationDegrees!
     
@@ -81,11 +81,19 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
                     print("SUCCESS:\(parsedResult.success), MESSAGE:\(String(describing: parsedResult.message))")
                     if (parsedResult.success == true){
                         print("ALERT VIEW")
-                        // TODO: THIS PART DOESN"T WORK
-                        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
                         
-                        self.present(alert, animated: true, completion: nil)
+                        performUIUpdatesOnMain {
+                            self.uploadAlert.dismiss(animated: true, completion: nil)
+                            // TODO: THIS PART DOESN"T WORK
+                            let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                            
+                            self.present(alert, animated: true, completion: nil)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+
                     }
                     return
                 default:
@@ -105,11 +113,11 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
       
         
         performUIUpdatesOnMain {
-            self.uploadAlert.dismiss(animated: true, completion: nil)
+//            self.uploadAlert.dismiss(animated: true, completion: nil)
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.dismiss(animated: true, completion: nil)
-            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                self.dismiss(animated: true, completion: nil)
+//            }
             
             
         }

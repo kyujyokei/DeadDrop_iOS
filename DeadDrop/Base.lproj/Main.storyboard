@@ -253,7 +253,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LyD-5h-nIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1332" y="913"/>
+            <point key="canvasLocation" x="1278" y="1330"/>
         </scene>
         <!--Post View Controller-->
         <scene sceneID="gC1-hY-ofX">
@@ -347,7 +347,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ECw-Al-Cnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="HAu-5C-XVJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1671.2" y="135.38230884557723"/>
+            <point key="canvasLocation" x="2238" y="913"/>
         </scene>
         <!--RangeSlideBar-->
         <scene sceneID="Qo4-GJ-OGz">
@@ -361,8 +361,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4W-mc-IYX">
-                                <rect key="frame" x="16" y="194" width="343" height="128"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k4W-mc-IYX">
+                                <rect key="frame" x="16" y="28" width="343" height="294"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7ek-r5-R1k">
                                         <rect key="frame" x="28" y="50" width="287" height="31"/>
@@ -390,16 +390,25 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCv-xB-dwz">
-                                <rect key="frame" x="178" y="211" width="18" height="21"/>
+                                <rect key="frame" x="178" y="53" width="18" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmD-Lk-Hgk">
+                                <rect key="frame" x="134.5" y="264" width="105" height="30"/>
+                                <state key="normal" title="Delete Account"/>
+                                <connections>
+                                    <action selector="deleteAccountBtnAct:" destination="jax-ve-Iz1" eventType="touchUpInside" id="L9z-rv-Kgz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.36221104452054792" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="k4W-mc-IYX" firstAttribute="top" secondItem="fCv-xB-dwz" secondAttribute="bottom" constant="-38" id="7i7-Ve-DYq"/>
+                            <constraint firstItem="gmD-Lk-Hgk" firstAttribute="centerX" secondItem="egU-cB-VIU" secondAttribute="centerX" id="6QE-7F-vM9"/>
+                            <constraint firstItem="gmD-Lk-Hgk" firstAttribute="top" secondItem="k4W-mc-IYX" secondAttribute="bottom" constant="-58" id="EDQ-PO-WnZ"/>
                             <constraint firstItem="k4W-mc-IYX" firstAttribute="top" secondItem="H8E-za-JXZ" secondAttribute="bottom" constant="174" id="SWf-yB-nA7"/>
+                            <constraint firstItem="7ek-r5-R1k" firstAttribute="top" secondItem="fCv-xB-dwz" secondAttribute="bottom" constant="170" id="VYn-Ng-agk"/>
                             <constraint firstItem="fCv-xB-dwz" firstAttribute="centerX" secondItem="egU-cB-VIU" secondAttribute="centerX" id="Ved-5e-l7n"/>
                             <constraint firstItem="k4W-mc-IYX" firstAttribute="centerX" secondItem="egU-cB-VIU" secondAttribute="centerX" id="zT4-si-S5T"/>
                         </constraints>
@@ -410,7 +419,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nzv-Fl-gPU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1671" y="-527"/>
+            <point key="canvasLocation" x="1016.8" y="-1045.7271364317842"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="Z1a-eI-nXW">
@@ -549,12 +558,30 @@
                     <connections>
                         <outlet property="addBtn" destination="ei5-ma-UBv" id="cS6-dz-zFA"/>
                         <outlet property="tableView" destination="YQ2-Lu-hDS" id="RwX-8L-8Tx"/>
-                        <segue destination="jax-ve-Iz1" kind="show" identifier="toRange" animates="NO" id="bPO-pF-o0Z"/>
+                        <segue destination="jax-ve-Iz1" kind="show" identifier="toRange" id="qI4-27-hBJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMx-I4-6La" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="791.20000000000005" y="136.28185907046478"/>
+            <point key="canvasLocation" x="228" y="135"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="9el-LM-CAd">
+            <objects>
+                <viewController id="n9v-b3-ORp" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="unW-NZ-UIp"/>
+                        <viewControllerLayoutGuide type="bottom" id="g6T-fa-eQa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SHQ-Fm-vLM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ya-ei-3cx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1014" y="-352"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="4t8-jx-olt">
@@ -683,6 +710,6 @@
         <image name="logo" width="152" height="218"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ncR-am-Bgq"/>
+        <segue reference="aCw-uc-xBT"/>
     </inferredMetricsTieBreakers>
 </document>

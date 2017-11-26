@@ -6,10 +6,39 @@
 //  Copyright © 2017年 Kei. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-class Setting: NSObject {
+enum EnumSetting: Int  {
+    case settings = 0, account, logout, cancel
+    static let count = 4
+    var description: String {
+        switch (self) {
+        case .settings:
+            return "Settings"
+        case .account:
+            return "My Account"
+        case .logout:
+            return "Logout"
+        case .cancel:
+            return "Cancel"
+            
+        }
+    }
+    var image: String {
+        switch (self) {
+        case .settings:
+            return "Settings Image"
+        case .account:
+            return "Account Image"
+        case .logout:
+            return "Logout Image"
+        case .cancel:
+            return "Cancel Image"
+        }
+    }
+}
+
+class Setting {
     let name:String
     let imageName:String
     init(name:String,imageName:String){
@@ -18,7 +47,13 @@ class Setting: NSObject {
     }
 }
 
-class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+protocol SettingsLauncherDelegate {
+    func didSelect(setting: EnumSetting)
+}
+
+class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    var delegate: SettingsLauncherDelegate?
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -78,15 +113,16 @@ class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return settings.count
+        return EnumSetting.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SettingsCell
         
-        let setting = settings[indexPath.item]
-        cell.setting = setting
+//        let setting = settings[indexPath.item]
+//        cell.setting = setting
         
+        cell.enumSetting = EnumSetting(rawValue: indexPath.row)
         return cell
     }
     
@@ -100,29 +136,10 @@ class SettingsLauncher:NSObject, UICollectionViewDelegate, UICollectionViewDataS
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let setting = settings[indexPath.item]
-//        print(setting.name)
-        switch indexPath.row {
-            case 0:
-                print("A")
-            case 1:
-                print("B")
-            case 2:
-                print("C")
-            case 3:
-                print("D")
-            default:
-                print("E")
+        let cell = collectionView.cellForItem(at: indexPath) as? SettingsCell
+        if let enumSetting = cell?.enumSetting {
+            delegate?.didSelect(setting: enumSetting)
         }
-        
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-            self.handleDismiss()
-        }) { (completed: Bool) in
-            
-        }
-        
-        
-        
     }
     
     override init() {

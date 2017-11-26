@@ -43,6 +43,9 @@ struct Message:Codable {
     let timestamp: String
     let latitude: String
     let longitude: String
+    let creator_username: String
+    let creator_id: Int
+    let message_id: Int
 }
 
 struct ErrorMessage:Codable {

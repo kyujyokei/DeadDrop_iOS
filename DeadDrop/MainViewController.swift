@@ -9,7 +9,9 @@
 import UIKit
 import MapKit
 
-class MainViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
+class MainViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SettingsLauncherDelegate {
+    
+    // MARK: - Properites
     
     let manager = CLLocationManager() // This is for getting user's current location
     var latitude:CLLocationDegrees?
@@ -27,11 +29,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     let blackView = UIView()
-    let settingsLuancher = SettingsLauncher()
+    let settingsLauncher = SettingsLauncher()
     
     @IBAction func refreshBtnAction(_ sender: UIButton) {
         
-//        settingsLuancher.showSettings()
+        settingsLauncher.showSettings()
         
 //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //        let vc = storyboard.instantiateViewController(withIdentifier: "RangeSlideBar") as! RangeSlideBarViewController
@@ -39,7 +41,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
 //        navigationController?.pushViewController(vc, animated: true)
 //        print("B")
 
-        performSegue(withIdentifier: "toRange", sender: self)
+//        performSegue(withIdentifier: "toRange", sender: self)
     }
     
     func handleDismiss(){
@@ -48,7 +50,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
             // dismisses blackView
         })
     }
-    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -68,16 +69,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         manager.desiredAccuracy = kCLLocationAccuracyBest // get the most accurate data
         manager.requestWhenInUseAuthorization() // request the location when user is using our app, not in backgroud
         manager.startUpdatingLocation()
+        
     }
     
     func viewDidAppear() {
-        
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = .gray
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        
+
         
         //self.tableView.reloadData()
     }
@@ -92,6 +88,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.reloadData()
         
+        settingsLauncher.delegate = self
+        
         //https://stackoverflow.com/questions/24475792/how-to-use-pull-to-refresh-in-swift
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
@@ -99,6 +97,38 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
         tableView.refreshControl = refreshControl
     }
+    
+    // MARK: - Settings Menu
+    
+    func didSelect(setting: EnumSetting) {
+        defer {
+            settingsLauncher.handleDismiss()
+        }
+        print("Did select setting \(setting)")
+        
+        switch (setting) {
+        case .settings:
+            performSegue(withIdentifier: "toRange", sender: nil)
+            print("Found Settings")
+        case .account:
+            performSegue(withIdentifier: "toRange", sender: nil)
+            print("Found account")
+        case .logout:
+            print("logging out")
+        case .cancel:
+            print("Cancel")
+        }
+    }
+    
+//    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        switch (segue.identifier) {
+//        case "toRange":
+//            guard let setting = sender as? EnumSetting else {
+//                return
+//            }
+//        }
+//        if segue.identifier == "toRange"
+//    }
     
     func doSomething(refreshControl: UIRefreshControl) {
         
@@ -137,6 +167,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         cell.messageLabel.lineBreakMode = .byWordWrapping
         cell.messageLabel.numberOfLines = 0
         
+        cell.usernameLabel.text = i.userName
         cell.timeLabel.text = i.date
 //        let convertTest = convertStringToDate(dateString: i.date!)
 //        print("CONVERT RESULT:\(String(describing: convertTest))")
@@ -181,31 +212,54 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, err) in
-            guard let data = data, let response = response else { return }
+            guard let data = data, let response = response as? HTTPURLResponse else { return }
             
             do {
-                let package = try JSONDecoder().decode(Package.self, from: data)
+                    switch (response.statusCode) {
+                    case 200:
+                        let parsedResult = try JSONDecoder().decode(SuccessResponse.self, from: data)
+                        print("SUCCESS:\(parsedResult.success), MESSAGE:\(String(describing: parsedResult.message))")
+                        if (parsedResult.success == true){
+                            print("ALERT VIEW")
+                            
+                            let package = try JSONDecoder().decode(Package.self, from: data)
+                            
+                            let messages = package.data.messages
+                            
+                            DropManager.clearAll() // clean Drops to prevent multiple loads
+                            
+                            for i in messages {
+                                let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message, date: i.timestamp, userName: i.creator_username, userId: i.creator_id )
+                                DropManager.add(drop: new)
+                            }
+                            
+                            performUIUpdatesOnMain {
+                                self.tableView.reloadData()
+//                                self.activityIndicator.stopAnimating()
+//                                print("B")
+                                
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                                }
 
-                let messages = package.data.messages
+                            }
+                            
+                        }
+                        return
+                    default:
+                        let parsedResult = try JSONDecoder().decode(SuccessResponse.self, from: data)
+                        print("PARSED RESULT:",parsedResult)
+                    }
                 
-                DropManager.clearAll() // clean Drops to prevent multiple loads
-                
-                for i in messages {
-                    let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message, date: i.timestamp)
-                    DropManager.add(drop: new)
-                }
-
-                
+ 
             } catch let err {
                 print(err)
             }
         }
         
-        performUIUpdatesOnMain{
-            //        let vc = MainViewController()
-            self.tableView.reloadData()
-            self.activityIndicator.stopAnimating()
-        }
+//        performUIUpdatesOnMain{
+//            self.tableView.reloadData()
+//            self.activityIndicator.stopAnimating()
+//        }
         
         task.resume()
     }

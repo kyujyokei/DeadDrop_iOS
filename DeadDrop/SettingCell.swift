@@ -33,6 +33,15 @@ class BaseCell: UICollectionViewCell {
 
 class SettingsCell: BaseCell {
     
+    var enumSetting: EnumSetting? {
+        didSet {
+            nameLabel.text = enumSetting?.description
+            if let imageName = enumSetting?.image {
+                iconImageView.image = UIImage(named: imageName)
+            }
+        }
+    }
+    
     var setting:Setting? {
         didSet{
             nameLabel.text = setting?.name
