@@ -70,13 +70,17 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         manager.requestWhenInUseAuthorization() // request the location when user is using our app, not in backgroud
         manager.startUpdatingLocation()
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
+        
+        tableView.refreshControl = refreshControl
+        
+        tableView.reloadData()
+        print("RELOAD DATA")
+        
     }
     
-    func viewDidAppear() {
 
-        
-        //self.tableView.reloadData()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,16 +90,16 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
         
         settingsLauncher.delegate = self
         
         //https://stackoverflow.com/questions/24475792/how-to-use-pull-to-refresh-in-swift
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
+//        let refreshControl = UIRefreshControl()
+//        refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
         
         // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
-        tableView.refreshControl = refreshControl
+//        tableView.refreshControl = refreshControl
     }
     
     // MARK: - Settings Menu
@@ -111,9 +115,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
             performSegue(withIdentifier: "toRange", sender: nil)
             print("Found Settings")
         case .account:
-            performSegue(withIdentifier: "toRange", sender: nil)
+            performSegue(withIdentifier: "toUserMessage", sender: nil)
             print("Found account")
         case .logout:
+//            self.dismiss(animated: true, completion: nil)
+            performSegue(withIdentifier: "logout", sender: nil)
+            UserDefaults.standard.set(false, forKey: "isLoggedIn")
             print("logging out")
         case .cancel:
             print("Cancel")
@@ -177,6 +184,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
 //        print("\(latitude), \(longitude)")
         let distance = currLocation?.distance(from: messageLocation)
         
+        print("DISTANCE: ",distance)
+        
         cell.messageLabel.text = "\(String(describing: i.message!))"
 //        let messageDate = convertStringToDate(dateString: i.message)
         
@@ -220,7 +229,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
                         let parsedResult = try JSONDecoder().decode(SuccessResponse.self, from: data)
                         print("SUCCESS:\(parsedResult.success), MESSAGE:\(String(describing: parsedResult.message))")
                         if (parsedResult.success == true){
-                            print("ALERT VIEW")
                             
                             let package = try JSONDecoder().decode(Package.self, from: data)
                             

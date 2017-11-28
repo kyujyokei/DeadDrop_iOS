@@ -19,11 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
 //        let tokenFetchDate = UserDefaults.standard.data(forKey: "tokenFetchDate")
         UserDefaults.standard.register(defaults: ["tokenFetchDate":""])
-//        if isLoggedIn == true {
-//            let mainStoryBoard = UIStoryboard(name:"Main", bundle: nil)
-//            let targetViewController = mainStoryBoard.instantiateViewController(withIdentifier: "InitialViewController")
-//            self.window?.rootViewController = targetViewController
-//        }
+        if isLoggedIn == true {
+            let mainStoryBoard = UIStoryboard(name:"Main", bundle: nil)
+            let targetViewController = mainStoryBoard.instantiateViewController(withIdentifier: "InitialViewController")
+            self.window?.rootViewController = targetViewController
+        }
         
         return true
     }
