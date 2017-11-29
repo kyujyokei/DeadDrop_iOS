@@ -77,8 +77,6 @@ class SignupViewController: UIViewController {
                 }
             
         }
-
-
                 task.resume()
         }
         

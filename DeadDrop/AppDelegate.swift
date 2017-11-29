@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.register(defaults: ["range":10])
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
 //        let tokenFetchDate = UserDefaults.standard.data(forKey: "tokenFetchDate")
-        UserDefaults.standard.register(defaults: ["tokenFetchDate":""])
+//        UserDefaults.standard.register(defaults: ["tokenDate":""])
         if isLoggedIn == true {
             let mainStoryBoard = UIStoryboard(name:"Main", bundle: nil)
             let targetViewController = mainStoryBoard.instantiateViewController(withIdentifier: "InitialViewController")

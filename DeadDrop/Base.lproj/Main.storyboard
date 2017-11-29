@@ -536,7 +536,6 @@
                                 <state key="normal" title="+"/>
                                 <connections>
                                     <action selector="addBtnAction:" destination="RcD-5M-N8o" eventType="touchUpInside" id="Ut3-pA-tUj"/>
-                                    <segue destination="Meq-GW-nU7" kind="presentation" id="aCw-uc-xBT"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -560,6 +559,7 @@
                         <segue destination="jax-ve-Iz1" kind="show" identifier="toRange" id="qI4-27-hBJ"/>
                         <segue destination="n9v-b3-ORp" kind="show" identifier="toUserMessage" id="Mg6-Xh-VyM"/>
                         <segue destination="gxt-al-WMW" kind="show" identifier="logout" id="itB-cC-8YS"/>
+                        <segue destination="Meq-GW-nU7" kind="show" identifier="toPost" id="lX6-9K-bPZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMx-I4-6La" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -817,6 +817,6 @@
         <image name="logo" width="152" height="218"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aCw-uc-xBT"/>
+        <segue reference="lX6-9K-bPZ"/>
     </inferredMetricsTieBreakers>
 </document>

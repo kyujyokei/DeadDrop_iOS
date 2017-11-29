@@ -23,6 +23,40 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     @IBOutlet weak var addBtn: UIButton!
     
     @IBAction func addBtnAction(_ sender: UIButton) {
+        let now = Date()
+        print("DATE:",now)
+        
+        let tokenDate = UserDefaults.standard.object(forKey: "tokenDate") as! NSDate
+        print("tokenDATE:\(tokenDate)")
+        
+        let calendar = Calendar(identifier: .gregorian)
+        let unitFlags = Set<Calendar.Component>([.day, .month, .year, .hour, .minute])
+        var duration = calendar.dateComponents(unitFlags, from: tokenDate as Date, to: now)
+
+
+        print("DURATION:",duration.hour!)
+        
+        if (duration.hour! < 24){
+            performSegue(withIdentifier: "toPost", sender: self)
+        } else {
+            let alertController = UIAlertController(title: "Session Expired", message: "Your session has expired! Please log in again", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+            
+            // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                (result : UIAlertAction) -> Void in
+                print("OK")
+            }
+            
+            // TODO: Make this go to root controller
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+
+        }
+        
+
+        
     }
     
     

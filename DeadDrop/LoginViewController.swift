@@ -50,8 +50,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     case 200:
                         let parsedResult = try JSONDecoder().decode(TokenResponse.self, from: data)
                         print("SUCCESS:\(parsedResult.success), MESSAGE:\(parsedResult.message ?? "OK")")
+                        
+                        let date = Date()
+                        UserDefaults.standard.set(date, forKey: "tokenDate")
                         UserDefaults.standard.set(parsedResult.token, forKey: "token")
-                        print("TOKEN:",UserDefaults.standard.object(forKey: "token"))
+                        
+                        print("TOKEN DATE:",UserDefaults.standard.object(forKey: "token")!)
+                        print("TOKEN:",UserDefaults.standard.object(forKey: "token")!)
+                        
                         if parsedResult.success == false {
                             // if login fails
                             performUIUpdatesOnMain {
