@@ -52,6 +52,9 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         getData()
         
+        tableVIew.tableFooterView = UIView()
+        // removes the empty table view ceels
+        
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)

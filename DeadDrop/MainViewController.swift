@@ -118,6 +118,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.tableFooterView = UIView()
+        // removes the empty table view ceels
 
         addBtn.layer.cornerRadius = 0.5 * addBtn.bounds.size.width
         addBtn.clipsToBounds = true

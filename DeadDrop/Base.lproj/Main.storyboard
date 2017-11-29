@@ -362,7 +362,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4W-mc-IYX">
-                                <rect key="frame" x="12.5" y="158.5" width="350" height="350"/>
+                                <rect key="frame" x="13" y="159" width="350" height="350"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqY-kw-qYY">
                                         <rect key="frame" x="155" y="188" width="40" height="30"/>
@@ -377,8 +377,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7ek-r5-R1k">
-                                        <rect key="frame" x="36" y="94" width="287" height="31"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7ek-r5-R1k">
+                                        <rect key="frame" x="36" y="94" width="278" height="31"/>
                                         <connections>
                                             <action selector="sliderAction:" destination="jax-ve-Iz1" eventType="valueChanged" id="g4g-pC-TcB"/>
                                         </connections>
@@ -387,6 +387,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="6vS-XT-tMl"/>
+                                    <constraint firstItem="7ek-r5-R1k" firstAttribute="leading" secondItem="k4W-mc-IYX" secondAttribute="leading" constant="38" id="C73-2t-T2o"/>
                                     <constraint firstAttribute="height" constant="350" id="Qap-wr-aJr"/>
                                     <constraint firstItem="WqY-kw-qYY" firstAttribute="centerX" secondItem="k4W-mc-IYX" secondAttribute="centerX" id="RdG-Z4-3sL"/>
                                     <constraint firstItem="fCv-xB-dwz" firstAttribute="top" secondItem="k4W-mc-IYX" secondAttribute="top" constant="65" id="bE3-KS-tMX"/>
@@ -397,7 +398,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmD-Lk-Hgk">
-                                <rect key="frame" x="134.5" y="450.5" width="105" height="30"/>
+                                <rect key="frame" x="135" y="451" width="105" height="30"/>
                                 <state key="normal" title="Delete Account"/>
                                 <connections>
                                     <action selector="deleteAccountBtnAct:" destination="jax-ve-Iz1" eventType="touchUpInside" id="L9z-rv-Kgz"/>
