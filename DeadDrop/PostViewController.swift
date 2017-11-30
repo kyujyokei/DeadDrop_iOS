@@ -40,7 +40,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         // this part generates the upload alet view
         self.present(uploadAlert, animated: true, completion:  nil)
 
-        guard let url = URL(string:"https://deaddrop.live/api/message") else {return}
+        guard let url = URL(string:"http://localhost:443/api/message") else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

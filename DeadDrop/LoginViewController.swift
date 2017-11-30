@@ -22,7 +22,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginBtnAction(_ sender: UIButton) {
         if ( usernameTextField.text != "" && passwordTextField.text != ""){
-            guard let url = URL(string:"https://deaddrop.live/user/login") else {return}
+            guard let url = URL(string:"http://localhost:443/user/login") else {return}
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -50,14 +50,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     case 200:
                         let parsedResult = try JSONDecoder().decode(TokenResponse.self, from: data)
                         print("SUCCESS:\(parsedResult.success), MESSAGE:\(parsedResult.message ?? "OK")")
-                        
-                        let date = Date()
-                        UserDefaults.standard.set(date, forKey: "tokenDate")
-                        UserDefaults.standard.set(parsedResult.token, forKey: "token")
-                        
-                        print("TOKEN DATE:",UserDefaults.standard.object(forKey: "token")!)
-                        print("TOKEN:",UserDefaults.standard.object(forKey: "token")!)
-                        
+               
                         if parsedResult.success == false {
                             // if login fails
                             performUIUpdatesOnMain {
@@ -67,6 +60,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         } else {
                             // if login succeed
                             performUIUpdatesOnMain {
+                                
+                                let date = Date()
+                                UserDefaults.standard.set(date, forKey: "tokenDate")
+                                UserDefaults.standard.set(parsedResult.data, forKey: "token")
+                                
+                                print("TOKEN DATE:",UserDefaults.standard.object(forKey: "token")!)
+                                print("TOKEN:",UserDefaults.standard.object(forKey: "token")!)
                                 UserDefaults.standard.set(true, forKey: "isLoggedIn")
 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {

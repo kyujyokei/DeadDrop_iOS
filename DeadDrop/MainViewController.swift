@@ -270,7 +270,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     public func getData(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
         
         print("get")
-        guard let url = URL(string: "https://deaddrop.live/api/message?latitude=\(latitude)&longitude=\(longitude)&range=\(UserDefaults.standard.integer(forKey: "range"))") else { return }
+        guard let url = URL(string: "http://localhost:443/api/message?latitude=\(latitude)&longitude=\(longitude)&range=\(UserDefaults.standard.integer(forKey: "range"))") else { return }
         
         print(url)
         
