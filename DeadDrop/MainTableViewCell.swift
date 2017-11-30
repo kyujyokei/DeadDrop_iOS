@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol MainTableViewCellDelegate{
+    func didTapLike(_ tag:Int)
+    func didTapDislike(_ tag:Int)}
+
 class MainTableViewCell: UITableViewCell {
     
+    var delegate: MainTableViewCellDelegate?
     
     @IBOutlet weak var distanceLabel: UILabel!
     
@@ -18,6 +23,26 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     
     @IBOutlet weak var usernameLabel: UILabel!
+    
+    @IBOutlet weak var likeLabel: UILabel!
+    
+    @IBOutlet weak var dislikeLabel: UILabel!
+    
+    @IBOutlet weak var likeButton: UIButton!
+    
+    @IBOutlet weak var dislikeButton: UIButton!
+    
+    
+    
+    @IBAction func likeBtnAct(_ sender:UIButton) {
+        delegate?.didTapLike(sender.tag)
+    }
+    
+    @IBAction func dislikeBtnAct(_ sender:UIButton) {
+        delegate?.didTapDislike(sender.tag)
+    }
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

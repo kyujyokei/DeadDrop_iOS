@@ -22,6 +22,11 @@ import Foundation
 //}
 
 
+struct BaseURL:Codable {
+    let DeaddropLive = "https://deaddrop.live"
+    let LocalHost = "http://locaohost:443"
+}
+
 struct Package:Encodable, Decodable{
     let data: RequestData
 }

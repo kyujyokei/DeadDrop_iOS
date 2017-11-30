@@ -140,7 +140,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             self.messageVBottom.constant = 0
         }, completion: nil)
         
-        print("PINNNNNN")
+        print("PIN SELECTED")
         let username = view.annotation?.title
         let message = view.annotation?.subtitle
         if let userText = username {
@@ -149,6 +149,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         } else {
             messageLabel.text = nil
         }
+        
+        
     }
     
 //    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -216,7 +218,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 DropManager.clearAll() // clean Drops to prevent multiple loads
                 
                 for i in messages {
-                    let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message, date: i.timestamp, userName: i.creator_username, userId: i.creator_id )
+                    let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message, date: i.timestamp, userName: i.creator_username, userId: i.creator_id, messageId: i.message_id )
                     DropManager.add(drop: new)
                     let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake( new.latitude , new.longtitude )
                     let annotation = MKPointAnnotation()

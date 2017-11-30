@@ -19,7 +19,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
                                         message: "Please wait",
                                         preferredStyle: .alert)
     
-    var newDrop = Drop(lat: 0.0, long: 0.0, message: "", date: "",userName: "", userId: 0 )
+    var newDrop = Drop(lat: 0.0, long: 0.0, message: "", date: "",userName: "", userId: 0, messageId: 0 )
     var latitude:CLLocationDegrees!
     var longitude:CLLocationDegrees!
     
@@ -142,12 +142,12 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     // returns a bool, if false we don't want to add more characters
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
-        if range.length + range.location > postTextView.text.characters.count {
+        if range.length + range.location > postTextView.text.count {
             return false
         }
-        let newLength = postTextView.text.characters.count + text.characters.count - range.length
+        let newLength = postTextView.text.count + text.count - range.length
 
-        let wordLeft = wordCount - (postTextView.text.characters.count + text.characters.count)
+        let wordLeft = wordCount - (postTextView.text.count + text.count)
         // postTextView.text.characters.count is the accumulated word count already inputed
         // text.characters.count is the word count you just inputted (usually = 1)
         if (newLength == 0){
@@ -162,7 +162,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
             self.wordCountLabel.text = "0"
             self.wordCountLabel.textColor = UIColor.red
         }
-        print("\(postTextView.text.characters.count)  \(text.characters.count)")
+        print("\(postTextView.text.count)  \(text.count)")
         print("newLength:\(newLength)")
 
         return newLength <= wordCount // will stop input after reaching this limit

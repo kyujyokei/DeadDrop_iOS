@@ -104,7 +104,7 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
                         DropManager.clearAll() // clean Drops to prevent multiple loads
                         
                         for i in messages {
-                            let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message, date: i.timestamp, userName: i.creator_username, userId: i.creator_id )
+                            let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message, date: i.timestamp, userName: i.creator_username, userId: i.creator_id, messageId: i.message_id)
                             DropManager.add(drop: new)
                         }
                         

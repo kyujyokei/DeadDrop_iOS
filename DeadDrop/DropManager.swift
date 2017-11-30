@@ -17,14 +17,16 @@ class Drop {
     var date:String?
     var userName:String?
     var userId: Int?
+    var messageId: Int?
     
-    init(lat:CLLocationDegrees,long:CLLocationDegrees,message:String,date:String, userName:String, userId:Int){
+    init(lat:CLLocationDegrees,long:CLLocationDegrees,message:String,date:String, userName:String, userId:Int, messageId: Int){
         self.latitude = lat
         self.longtitude = long
         self.message = message
         self.date = date
         self.userName = userName
         self.userId = userId
+        self.messageId = messageId
     }
 }
 
@@ -33,9 +35,9 @@ class DropManager {
     
     @discardableResult
     init(){
-        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Hi", date: "", userName:"", userId: 0))
-        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Great to see you", date: "", userName:"", userId: 0))
-        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Boo", date: "", userName:"", userId: 0))
+        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Hi", date: "", userName:"", userId: 0, messageId: 0))
+        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Great to see you", date: "", userName:"", userId: 0, messageId: 1))
+        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Boo", date: "", userName:"", userId: 0, messageId: 2))
     }
     
     static func add(drop:Drop){

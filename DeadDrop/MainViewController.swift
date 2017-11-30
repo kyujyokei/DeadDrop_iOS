@@ -9,7 +9,11 @@
 import UIKit
 import MapKit
 
-class MainViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SettingsLauncherDelegate {
+class MainViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SettingsLauncherDelegate, MainTableViewCellDelegate {
+
+    
+
+    
     
     // MARK: - Properites
     
@@ -25,9 +29,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     @IBAction func addBtnAction(_ sender: UIButton) {
         let now = Date()
         print("DATE:",now)
+        // now is the recent time
         
         let tokenDate = UserDefaults.standard.object(forKey: "tokenDate") as! NSDate
         print("tokenDATE:\(tokenDate)")
+        // tokenDate is the timestamp when loggin in
         
         let calendar = Calendar(identifier: .gregorian)
         let unitFlags = Set<Calendar.Component>([.day, .month, .year, .hour, .minute])
@@ -37,6 +43,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         print("DURATION:",duration.hour!)
         
         if (duration.hour! < 24){
+            // if the token reached 24 hours, 
             performSegue(withIdentifier: "toPost", sender: self)
         } else {
             let alertController = UIAlertController(title: "Session Expired", message: "Your session has expired! Please log in again", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
@@ -69,13 +76,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
         settingsLauncher.showSettings()
         
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "RangeSlideBar") as! RangeSlideBarViewController
-//        print("A")
-//        navigationController?.pushViewController(vc, animated: true)
-//        print("B")
-
-//        performSegue(withIdentifier: "toRange", sender: self)
     }
     
     func handleDismiss(){
@@ -211,6 +211,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         cell.messageLabel.lineBreakMode = .byWordWrapping
         cell.messageLabel.numberOfLines = 0
         
+        cell.delegate = self
+        //cell.tag = indexPath.row
+        cell.likeButton.tag = indexPath.row
+        cell.dislikeButton.tag = indexPath.row
+        
         cell.usernameLabel.text = i.userName
         cell.timeLabel.text = i.date
 //        let convertTest = convertStringToDate(dateString: i.date!)
@@ -221,20 +226,35 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
 //        print("\(latitude), \(longitude)")
         let distance = currLocation?.distance(from: messageLocation)
         
-        print("DISTANCE: ",distance)
+        print("DISTANCE: ",distance ?? 0)
         
         cell.messageLabel.text = "\(String(describing: i.message!))"
 //        let messageDate = convertStringToDate(dateString: i.message)
         
-        if distance! < 1.0{
-            cell.distanceLabel.text = "Near here"
-        } else {
-            cell.distanceLabel.text = "\(Int(distance!))m"
+        if let distance = distance {
+        //    cell.distanceLabel.text = "Near here"
+        //} else {
+            // TODO: distance will be nil after logout & login
+            cell.distanceLabel.text = "\(Int(distance))m"
         }
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(DropManager.drops[indexPath.row].messageId!)
+    }
+    
+    func didTapLike(_ tag:Int) {
+        print("TAG:",tag)
+        print("DROP ID:",DropManager.drops[tag].messageId!)
+    }
+    
+    func didTapDislike(_ tag:Int) {
+        print("TAG:",tag)
+        print("DROP ID:",DropManager.drops[tag].messageId!)
+        
+    }
     public func convertStringToDate (dateString:String) -> Date {
         
         let dateFormatter = DateFormatter()
@@ -274,7 +294,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
                             DropManager.clearAll() // clean Drops to prevent multiple loads
                             
                             for i in messages {
-                                let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message, date: i.timestamp, userName: i.creator_username, userId: i.creator_id )
+                                let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message, date: i.timestamp, userName: i.creator_username, userId: i.creator_id, messageId: i.message_id )
                                 DropManager.add(drop: new)
                             }
                             
@@ -301,10 +321,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
             }
         }
         
-//        performUIUpdatesOnMain{
-//            self.tableView.reloadData()
-//            self.activityIndicator.stopAnimating()
-//        }
         
         task.resume()
     }
