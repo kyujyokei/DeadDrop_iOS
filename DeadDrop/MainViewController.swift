@@ -218,6 +218,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
         cell.usernameLabel.text = i.userName
         cell.timeLabel.text = i.date
+        
+        cell.likeLabel.text = String(describing: i.likeCount!)
+        cell.dislikeLabel.text = String(describing: i.dislikeCount!)
 //        let convertTest = convertStringToDate(dateString: i.date!)
 //        print("CONVERT RESULT:\(String(describing: convertTest))")
         
@@ -248,6 +251,70 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     func didTapLike(_ tag:Int) {
         print("TAG:",tag)
         print("DROP ID:",DropManager.drops[tag].messageId!)
+        
+        guard let url = URL(string:"http://localhost:443/api/message/like") else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(UserDefaults.standard.object(forKey: "token") as! String,  forHTTPHeaderField: "x-auth" )
+        print("POSTED")
+        
+        
+        let newLike = MessageForLike(message_id: DropManager.drops[tag].messageId!)
+        
+        do {
+            let jsonBody = try JSONEncoder().encode(newLike)
+            request.httpBody = jsonBody
+            print("jsonBody:",jsonBody)
+            let jsonBodyString = String(data: jsonBody, encoding: .utf8)
+            print("JSON String : ", jsonBodyString!)
+        } catch let err  {
+            print("jsonBody Error: ",err)
+        }
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request){ (data,response,err) in
+            
+            guard let response = response as? HTTPURLResponse,let data = data else {return}
+            print("DATA:",data)
+            print("RESPONSE:",response)
+            print("STATUS CODE: ", response.statusCode)
+            //            let parsedResult: AnyObject?
+            do{
+                switch (response.statusCode) {
+                case 200:
+                    let parsedResult = try JSONDecoder().decode(SuccessResponse.self, from: data)
+                    print("SUCCESS:\(parsedResult.success), MESSAGE:\(String(describing: parsedResult.message))")
+                    if (parsedResult.success == true){
+                        
+                        performUIUpdatesOnMain {
+
+                            self.tableView.reloadData()
+                        }
+                        
+                    }
+                    return
+                default:
+                    let parsedResult = try JSONDecoder().decode(SuccessResponse.self, from: data)
+                    print("PARSED RESULT:",parsedResult)
+                }
+                
+                
+            }catch let err{
+                //                parsedResult = "Parse error" as AnyObject
+                print("Session Error: ",err)
+            }
+            
+            
+        }
+        performUIUpdatesOnMain {
+
+            self.getData(latitude: self.latitude!, longitude: self.longitude!)
+            self.tableView.reloadData()
+        }
+        
+        task.resume()
+        
     }
     
     func didTapDislike(_ tag:Int) {
@@ -294,7 +361,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
                             DropManager.clearAll() // clean Drops to prevent multiple loads
                             
                             for i in messages {
-                                let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message, date: i.timestamp, userName: i.creator_username, userId: i.creator_id, messageId: i.message_id )
+                                let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message, date: i.timestamp, userName: i.creator_username, userId: i.creator_id, messageId: i.message_id, likeCount: i.like_count, dislikeCount: i.dislike_count)
                                 DropManager.add(drop: new)
                             }
                             

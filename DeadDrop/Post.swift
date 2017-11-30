@@ -51,6 +51,8 @@ struct Message:Codable {
     let creator_username: String
     let creator_id: Int
     let message_id: Int
+    let like_count: Int
+    let dislike_count: Int
 }
 
 struct ErrorMessage:Codable {
@@ -85,6 +87,10 @@ struct TokenResponse: Codable {
     let message: String?
 }
 
+struct MessageForLike: Codable {
+    let message_id: Int
+    
+}
 
 
 

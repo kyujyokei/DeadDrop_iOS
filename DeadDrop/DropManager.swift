@@ -18,8 +18,10 @@ class Drop {
     var userName:String?
     var userId: Int?
     var messageId: Int?
+    var likeCount: Int?
+    var dislikeCount: Int?
     
-    init(lat:CLLocationDegrees,long:CLLocationDegrees,message:String,date:String, userName:String, userId:Int, messageId: Int){
+    init(lat:CLLocationDegrees,long:CLLocationDegrees,message:String,date:String, userName:String, userId:Int, messageId: Int, likeCount:Int, dislikeCount: Int){
         self.latitude = lat
         self.longtitude = long
         self.message = message
@@ -27,6 +29,8 @@ class Drop {
         self.userName = userName
         self.userId = userId
         self.messageId = messageId
+        self.likeCount = likeCount
+        self.dislikeCount = dislikeCount
     }
 }
 
@@ -35,9 +39,9 @@ class DropManager {
     
     @discardableResult
     init(){
-        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Hi", date: "", userName:"", userId: 0, messageId: 0))
-        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Great to see you", date: "", userName:"", userId: 0, messageId: 1))
-        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Boo", date: "", userName:"", userId: 0, messageId: 2))
+        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Hi", date: "", userName:"", userId: 0, messageId: 0, likeCount: 0, dislikeCount: 0))
+        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Great to see you", date: "", userName:"", userId: 0, messageId: 1, likeCount: 0, dislikeCount: 0))
+        DropManager.add(drop: Drop(lat: 1.1, long: 2.2, message: "Boo", date: "", userName:"", userId: 0, messageId: 2, likeCount: 0, dislikeCount: 0))
     }
     
     static func add(drop:Drop){

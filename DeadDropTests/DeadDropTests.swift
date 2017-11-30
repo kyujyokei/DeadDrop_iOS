@@ -47,7 +47,7 @@ class DeadDropTests: XCTestCase {
     func testAddDrop(){
         
 //        let testDrop = Drop.init(lat: 23.02, long: 33.22222, message: "Hello")
-        let testDrop = Drop.init(lat: 23.0, long: 34.0, message: "Hello", date: "", userName: "bubui", userId: 1, messageId: 1)
+        let testDrop = Drop.init(lat: 23.0, long: 34.0, message: "Hello", date: "", userName: "bubui", userId: 1, messageId: 1, likeCount: 0, dislikeCount: 0)
         
         DropManager.add(drop: testDrop)
         
@@ -56,7 +56,7 @@ class DeadDropTests: XCTestCase {
     
     func testAddDropVerifyDetails(){
 //        let testDrop = Drop.init(lat: 1.11, long: 2.22, message: "Test")
-        let testDrop = Drop.init(lat: 1.11, long: 2.22, message: "Test", date: "", userName: "bubui", userId: 1, messageId: 1)
+        let testDrop = Drop.init(lat: 1.11, long: 2.22, message: "Test", date: "", userName: "bubui", userId: 1, messageId: 1, likeCount: 0, dislikeCount: 0)
         
         DropManager.add(drop: testDrop)
         
