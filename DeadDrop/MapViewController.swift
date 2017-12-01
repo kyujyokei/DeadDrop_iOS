@@ -24,10 +24,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBOutlet weak var messageVBottom: NSLayoutConstraint!
     
-
     @IBOutlet weak var usernameLabel: UILabel!
     
     @IBOutlet weak var messageLabel: UILabel!
+    
+    @IBOutlet weak var likeLabel: UILabel!
+    
+    @IBOutlet weak var dislikeLabel: UILabel!
     
     @IBOutlet weak var postButton: UIButton!
     
@@ -83,7 +86,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setTestAnnotation() //sets the testing annotation
+//        self.setTestAnnotation() //sets the testing annotation
         mapView.delegate = self
     
         manager.delegate = self
@@ -143,6 +146,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print("PIN SELECTED")
         let username = view.annotation?.title
         let message = view.annotation?.subtitle
+
         if let userText = username {
             usernameLabel.text = userText
             messageLabel.text = message!
@@ -218,13 +222,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 DropManager.clearAll() // clean Drops to prevent multiple loads
                 
                 for i in messages {
-                    let new = Drop.init(lat: CLLocationDegrees(i.latitude)!, long: CLLocationDegrees(i.longitude)!, message: i.message, date: i.timestamp, userName: i.creator_username, userId: i.creator_id, messageId: i.message_id, likeCount: i.like_count, dislikeCount: i.dislike_count )
-                    DropManager.add(drop: new)
-                    let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake( new.latitude , new.longtitude )
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = location
-                    
-                    annotation.title = new.message
+
+                    let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake( Double(i.latitude)! , Double(i.longitude)! )
+//                    let annotation = MKPointAnnotation()
+//                    annotation.coordinate = location
+                    var annotation = CustomAnnotation(title: i.message, date: i.timestamp, subtitle: i.creator_username, userId: i.creator_id, messageId: i.message_id, likeCount: i.like_count, dislikeCount: i.dislike_count, coordinate: location)
+//                    annotation.coordinate = location
+//                    annotation.title = new.message
                     self.mapView.addAnnotation(annotation)
                 }
                 

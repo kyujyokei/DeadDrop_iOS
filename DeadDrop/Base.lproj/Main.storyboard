@@ -189,16 +189,44 @@
                                             <action selector="closeWinBtnAct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pyB-WN-xWI"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTy-Pi-GeU">
+                                        <rect key="frame" x="8" y="162" width="30" height="30"/>
+                                        <state key="normal" title="Like"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1D-L9-XgU">
+                                        <rect key="frame" x="81.5" y="162" width="45" height="30"/>
+                                        <state key="normal" title="Dislike"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHa-Ww-nIx">
+                                        <rect key="frame" x="46" y="171" width="10.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UX0-qW-dbG">
+                                        <rect key="frame" x="134.5" y="171" width="10.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="22P-3w-q3g" firstAttribute="bottom" secondItem="fdj-bY-4Ov" secondAttribute="bottom" id="0EU-qF-stc"/>
+                                    <constraint firstItem="bHa-Ww-nIx" firstAttribute="leading" secondItem="MTy-Pi-GeU" secondAttribute="trailing" constant="8" id="1aT-kX-vxM"/>
                                     <constraint firstItem="OAs-OR-mwj" firstAttribute="leading" secondItem="iph-aY-voM" secondAttribute="leading" constant="8" id="2KH-m8-54O"/>
                                     <constraint firstItem="fdj-bY-4Ov" firstAttribute="top" secondItem="iph-aY-voM" secondAttribute="top" constant="10" id="9F8-Xy-trk"/>
+                                    <constraint firstItem="MTy-Pi-GeU" firstAttribute="leading" secondItem="iph-aY-voM" secondAttribute="leading" constant="8" id="AXg-rU-7qA"/>
+                                    <constraint firstAttribute="bottom" secondItem="a1D-L9-XgU" secondAttribute="bottom" constant="8" id="EjY-1F-Zwb"/>
                                     <constraint firstItem="fdj-bY-4Ov" firstAttribute="leading" secondItem="iph-aY-voM" secondAttribute="leading" constant="8" id="Fsf-UB-wEk"/>
+                                    <constraint firstItem="UX0-qW-dbG" firstAttribute="leading" secondItem="a1D-L9-XgU" secondAttribute="trailing" constant="8" id="KSO-Fo-P0X"/>
+                                    <constraint firstAttribute="bottom" secondItem="MTy-Pi-GeU" secondAttribute="bottom" constant="8" id="PO2-sy-iKr"/>
+                                    <constraint firstAttribute="bottom" secondItem="UX0-qW-dbG" secondAttribute="bottom" constant="8" id="SJM-WZ-1zS"/>
                                     <constraint firstAttribute="trailing" secondItem="OAs-OR-mwj" secondAttribute="trailing" constant="8" id="TMA-ZO-hiG"/>
                                     <constraint firstAttribute="height" constant="200" id="UFw-Je-N16"/>
+                                    <constraint firstAttribute="bottom" secondItem="bHa-Ww-nIx" secondAttribute="bottom" constant="8" id="W3J-n9-cMJ"/>
                                     <constraint firstAttribute="trailing" secondItem="22P-3w-q3g" secondAttribute="trailing" constant="8" id="WBg-ZX-Rgo"/>
+                                    <constraint firstItem="a1D-L9-XgU" firstAttribute="leading" secondItem="bHa-Ww-nIx" secondAttribute="trailing" constant="25" id="jVL-XE-RBR"/>
                                     <constraint firstItem="OAs-OR-mwj" firstAttribute="top" secondItem="fdj-bY-4Ov" secondAttribute="bottom" constant="8" id="vpl-MM-gfA"/>
                                 </constraints>
                             </view>
@@ -223,6 +251,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="vuf-ze-ajt"/>
                     <connections>
+                        <outlet property="dislikeLabel" destination="UX0-qW-dbG" id="uAW-Xh-srE"/>
+                        <outlet property="likeLabel" destination="bHa-Ww-nIx" id="XpF-kP-0he"/>
                         <outlet property="mapView" destination="Ugy-sq-nMW" id="SLB-GL-Sea"/>
                         <outlet property="messageLabel" destination="OAs-OR-mwj" id="iv8-4f-dMB"/>
                         <outlet property="messageVBottom" destination="mrE-FB-WaU" id="kAf-7A-sST"/>
@@ -872,6 +902,6 @@
         <image name="logo" width="152" height="218"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lX6-9K-bPZ"/>
+        <segue reference="ncR-am-Bgq"/>
     </inferredMetricsTieBreakers>
 </document>
