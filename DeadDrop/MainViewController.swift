@@ -252,7 +252,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         print("TAG:",tag)
         print("DROP ID:",DropManager.drops[tag].messageId!)
         
-        guard let url = URL(string:"http://localhost:443/api/message/like") else {return}
+        guard let url = URL(string:"https://deaddrop.live/api/message/like") else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -321,7 +321,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         print("TAG:",tag)
         print("DROP ID:",DropManager.drops[tag].messageId!)
         
-        guard let url = URL(string:"http://localhost:443/api/message/dislike") else {return}
+        guard let url = URL(string:"https://deaddrop.live/api/message/dislike") else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -399,7 +399,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     public func getData(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
         
         print("get")
-        guard let url = URL(string: "http://localhost:443/api/message?latitude=\(latitude)&longitude=\(longitude)&range=\(UserDefaults.standard.integer(forKey: "range"))") else { return }
+        guard let url = URL(string: "https://deaddrop.live/api/message?latitude=\(latitude)&longitude=\(longitude)&range=\(UserDefaults.standard.integer(forKey: "range"))") else { return }
         
         print(url)
         

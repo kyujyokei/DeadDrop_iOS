@@ -24,7 +24,7 @@ class SignupViewController: UIViewController {
     @IBAction func signupBtnAction(_ sender: UIButton) {
         if (pwdTextField.text == confirmPwdTextField.text) {
         
-            guard let url = URL(string:"http://localhost:443/user/register") else {return}
+            guard let url = URL(string:"https://deaddrop.live/user/register") else {return}
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")

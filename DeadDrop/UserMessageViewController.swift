@@ -79,7 +79,7 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
     public func getData() {
         
         print("get")
-        guard let url = URL(string: "http://localhost:443/api/message/user)") else { return }
+        guard let url = URL(string: "https://deaddrop.live/api/message/user)") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
