@@ -19,21 +19,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var currentLocation:CLLocation?
     
     @IBOutlet weak var mapView: MKMapView!
-    
     @IBOutlet weak var messageView: UIView!
-    
     @IBOutlet weak var messageVBottom: NSLayoutConstraint!
-    
     @IBOutlet weak var usernameLabel: UILabel!
-    
     @IBOutlet weak var messageLabel: UILabel!
-    
     @IBOutlet weak var likeLabel: UILabel!
-    
     @IBOutlet weak var dislikeLabel: UILabel!
-    
     @IBOutlet weak var postButton: UIButton!
-    
     @IBOutlet weak var locationLabel: UILabel! // This is the location label for testing
     
     
@@ -156,51 +148,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         
     }
-    
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//
-//            // https://stackoverflow.com/questions/37446219/swift-2-multiline-mkpointannotation
-//
-//        let identifier = "annotaion"
-//
-//        if annotation.isKind(of: MKUserLocation.self) {
-//            return nil
-//        }
-//
-//        var annotationView: MKPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
-//
-//        if annotationView == nil {
-//
-//            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-//            annotationView?.canShowCallout = true
-//
-//            let label1 = UILabel(frame: CGRectMake(0, 0, 200, 21))
-//            label1.text = "Some text1 some text2 some text2 some text2 some text2 some text2 some text2"
-//            label1.numberOfLines = 0
-//            annotationView!.detailCalloutAccessoryView = label1;
-//
-//            let width = NSLayoutConstraint(item: label1, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 200)
-//            label1.addConstraint(width)
-//
-//
-//            let height = NSLayoutConstraint(item: label1, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 90)
-//            label1.addConstraint(height)
-//
-//
-//
-//        } else {
-//            annotationView!.annotation = annotation
-//        }
-//
-//        return annotationView
-//    }
-//
-//    func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
-//        return CGRect(x: x, y: y, width: width, height: height)
-//    }
-    
-    
-    
+
     
     func getData(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
         

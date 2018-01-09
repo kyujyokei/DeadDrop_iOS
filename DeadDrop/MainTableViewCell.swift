@@ -17,22 +17,13 @@ class MainTableViewCell: UITableViewCell {
     var delegate: MainTableViewCellDelegate?
     
     @IBOutlet weak var distanceLabel: UILabel!
-    
     @IBOutlet weak var timeLabel: UILabel!
-    
     @IBOutlet weak var messageLabel: UILabel!
-    
     @IBOutlet weak var usernameLabel: UILabel!
-    
     @IBOutlet weak var likeLabel: UILabel!
-    
     @IBOutlet weak var dislikeLabel: UILabel!
-    
     @IBOutlet weak var likeButton: UIButton!
-    
     @IBOutlet weak var dislikeButton: UIButton!
-    
-    
     
     @IBAction func likeBtnAct(_ sender:UIButton) {
         delegate?.didTapLike(sender.tag)
@@ -41,8 +32,6 @@ class MainTableViewCell: UITableViewCell {
     @IBAction func dislikeBtnAct(_ sender:UIButton) {
         delegate?.didTapDislike(sender.tag)
     }
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

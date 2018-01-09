@@ -162,8 +162,8 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
             self.wordCountLabel.text = "0"
             self.wordCountLabel.textColor = UIColor.red
         }
-        print("\(postTextView.text.count)  \(text.count)")
-        print("newLength:\(newLength)")
+//        print("\(postTextView.text.count)  \(text.count)")
+//        print("newLength:\(newLength)")
 
         return newLength <= wordCount // will stop input after reaching this limit
     }
@@ -186,28 +186,6 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     
-//    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "toTable"{
-//            let Destination : MainTableViewController = segue.destination as! MainTableViewController
-//            let newDrop = Drop.init(lat: latitude!, long: longitude!, message: postTextView.text)
-//            DropManager.add(drop: newDrop)
-//        }
-//    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

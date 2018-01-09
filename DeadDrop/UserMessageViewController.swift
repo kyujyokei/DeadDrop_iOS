@@ -30,11 +30,6 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
         
         cell.usernameLabel.text = i.userName
         cell.timeLabel.text = i.date
-
-        
-//        let messageLocation = CLLocation(latitude: i.latitude, longitude: i.longtitude)
-//        let distance = currLocation?.distance(from: messageLocation)
-//        print("DISTANCE: ",distance)
         
         cell.messageLabel.text = "\(String(describing: i.message!))"
 
@@ -110,12 +105,7 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
                         
                         performUIUpdatesOnMain {
                             self.tableVIew.reloadData()
-                            //                                self.activityIndicator.stopAnimating()
-                            //                                print("B")
                             self.tableVIew.reloadData()
-                            //                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            //                                }
-                            
                         }
                         
                     }
@@ -130,11 +120,6 @@ class UserMessageViewController: UIViewController, UITableViewDelegate, UITableV
                 print(err)
             }
         }
-        
-        //        performUIUpdatesOnMain{
-        //            self.tableView.reloadData()
-        //            self.activityIndicator.stopAnimating()
-        //        }
         
         task.resume()
     }

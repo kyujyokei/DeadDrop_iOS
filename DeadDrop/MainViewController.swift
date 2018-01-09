@@ -11,17 +11,12 @@ import MapKit
 
 class MainViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, SettingsLauncherDelegate, MainTableViewCellDelegate {
 
-    
-
-    
-    
     // MARK: - Properites
     
     let manager = CLLocationManager() // This is for getting user's current location
     var latitude:CLLocationDegrees?
     var longitude:CLLocationDegrees?
     var currLocation:CLLocation?
-    
     let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
     @IBOutlet weak var addBtn: UIButton!
@@ -59,11 +54,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
             
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
-
         }
-        
-
-        
     }
     
     
@@ -73,9 +64,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     let settingsLauncher = SettingsLauncher()
     
     @IBAction func refreshBtnAction(_ sender: UIButton) {
-        
         settingsLauncher.showSettings()
-        
     }
     
     func handleDismiss(){
@@ -87,7 +76,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        let location = locations[0] // the most recent position
+        let location = locations[0] // the most recent location
         
         latitude = location.coordinate.latitude
         longitude = location.coordinate.longitude
@@ -114,8 +103,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
     }
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -127,7 +114,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableViewAutomaticDimension
-//        self.tableView.reloadData()
         
         settingsLauncher.delegate = self
         
@@ -164,15 +150,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         }
     }
     
-//    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        switch (segue.identifier) {
-//        case "toRange":
-//            guard let setting = sender as? EnumSetting else {
-//                return
-//            }
-//        }
-//        if segue.identifier == "toRange"
-//    }
     
     func doSomething(refreshControl: UIRefreshControl) {
         
@@ -182,12 +159,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         // somewhere in your code you might need to call:
         refreshControl.endRefreshing()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -221,22 +192,15 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
         cell.likeLabel.text = String(describing: i.likeCount!)
         cell.dislikeLabel.text = String(describing: i.dislikeCount!)
-//        let convertTest = convertStringToDate(dateString: i.date!)
-//        print("CONVERT RESULT:\(String(describing: convertTest))")
         
         let messageLocation = CLLocation(latitude: i.latitude, longitude: i.longtitude)
 //        print("i LAT:\(i.latitude), i LONG:\(i.longtitude)")
 //        print("\(latitude), \(longitude)")
         let distance = currLocation?.distance(from: messageLocation)
         
-//        print("DISTANCE: ",distance ?? 0)
-        
         cell.messageLabel.text = "\(String(describing: i.message!))"
-//        let messageDate = convertStringToDate(dateString: i.message)
         
         if let distance = distance {
-        //    cell.distanceLabel.text = "Near here"
-        //} else {
             // TODO: distance will be nil after logout & login
             cell.distanceLabel.text = "\(Int(distance))m"
         }
@@ -429,14 +393,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
                             
                             performUIUpdatesOnMain {
                                 self.tableView.reloadData()
-//                                self.activityIndicator.stopAnimating()
-//                                print("B")
-                                
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                                }
-
                             }
-                            
                         }
                         return
                     default:

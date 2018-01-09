@@ -11,13 +11,9 @@ import UIKit
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var errorTextField: UILabel!
-    
     @IBOutlet weak var usernameTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var loginBtn: UIButton!
-  
     @IBOutlet weak var signupBtn: UIButton!
     
     @IBAction func loginBtnAction(_ sender: UIButton) {
@@ -106,9 +102,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         usernameTextField.delegate = self
         passwordTextField.delegate = self
         
-        //for testing
-        usernameTextField.text = "bubui"
-        passwordTextField.text = "bu"
+        //　for testing
+//        usernameTextField.text = "bubui"
+//        passwordTextField.text = "bu"
         
 
         let background = UIImage(named: "bg.png")
@@ -131,22 +127,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         signupBtn.layer.cornerRadius = loginBtn.bounds.size.height/2
         signupBtn.layer.borderWidth = 1
         signupBtn.layer.borderColor = UIColor.white.cgColor
-        
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    
     func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
         // dismiss keyboard with "return" key
         self.view.endEditing(true)
